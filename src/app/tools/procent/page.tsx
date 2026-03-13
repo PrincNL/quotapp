@@ -1,110 +1,71 @@
-"use client";
+import type { Metadata } from "next";
+import { ProcentCalculatorClient } from "./procent-client";
+import { JsonLd } from "@/components/json-ld";
 
-import { useState } from "react";
-import { Percent } from "lucide-react";
+export const metadata: Metadata = {
+  title: "Procent Berekenen | Percentage Calculator Online",
+  description: "Alle percentage berekeningen: X% van Y, stijging/daling berekenen, percentage van totaal. Gratis online procent tool.",
+  keywords: ["procent berekenen", "percentage calculator", "stijging berekenen", "daling berekenen", "percentage van"],
+  openGraph: {
+    title: "Procent Calculator - Alle Percentage Berekeningen",
+    description: "Percentage berekeningen makkelijk gemaakt",
+    url: "https://quotapp.nl/tools/procent",
+  },
+  alternates: {
+    canonical: "https://quotapp.nl/tools/procent",
+  },
+};
 
-export default function ProcentCalculator() {
-  const [mode, setMode] = useState<"van" | "percentage" | "stijging">("van")
-  const [waarde1, setWaarde1] = useState("")
-  const [waarde2, setWaarde2] = useState("")
-  const [resultaat, setResultaat] = useState<string | null>(null)
+const softwareSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Procent Calculator",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Web",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  description: "Alle percentage berekeningen in één tool",
+  url: "https://quotapp.nl/tools/procent",
+};
 
-  const bereken = () => {
-    const num1 = parseFloat(waarde1.replace(",", "."))
-    const num2 = parseFloat(waarde2.replace(",", "."))
-    
-    if (isNaN(num1) || isNaN(num2)) return
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Hoe bereken ik een percentage?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Om X% van Y te berekenen: (X / 100) × Y. Bijvoorbeeld: 20% van 100 = (20 / 100) × 100 = 20.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hoe bereken ik percentage stijging?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Percentage stijging = ((nieuwe waarde - oude waarde) / oude waarde) × 100. Bijvoorbeeld: van 80 naar 100 = ((100-80)/80) × 100 = 25% stijging.",
+      },
+    },
+  ],
+};
 
-    let result
-    switch (mode) {
-      case "van":
-        // Wat is X% van Y?
-        result = (num1 / 100) * num2
-        setResultaat(`${num1}% van ${num2} = ${result.toFixed(2).replace(".", ",")}`)
-        break
-      case "percentage":
-        // X is hoeveel % van Y?
-        result = (num1 / num2) * 100
-        setResultaat(`${num1} is ${result.toFixed(2).replace(".", ",")}% van ${num2}`)
-        break
-      case "stijging":
-        // Percentage stijging/daling van X naar Y
-        result = ((num2 - num1) / num1) * 100
-        const type = result >= 0 ? "stijging" : "daling"
-        setResultaat(`Van ${num1} naar ${num2} = ${Math.abs(result).toFixed(2).replace(".", ",")}% ${type}`)
-        break
-    }
-  }
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://quotapp.nl" },
+    { "@type": "ListItem", position: 2, name: "Procent Calculator", item: "https://quotapp.nl/tools/procent" },
+  ],
+};
 
-  const labels = {
-    van: { l1: "Percentage (%)", l2: "Van bedrag" },
-    percentage: { l1: "Deel", l2: "Totaal" },
-    stijging: { l1: "Oude waarde", l2: "Nieuwe waarde" },
-  }
-
+export default function ProcentCalculatorPage() {
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Procent Calculator</h1>
-        <p className="text-gray-600">Alle percentage berekeningen in één tool.</p>
-      </div>
-
-      <div className="bg-white rounded-xl shadow-md p-6 max-w-2xl mx-auto">
-        <div className="flex gap-2 mb-6">
-          {[
-            { key: "van", label: "X% van Y" },
-            { key: "percentage", label: "X is % van Y" },
-            { key: "stijging", label: "% stijging" },
-          ].map((m) => (
-            <button
-              key={m.key}
-              onClick={() => { setMode(m.key as any); setResultaat(null) }}
-              className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition ${
-                mode === m.key
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {m.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="space-y-4 mb-6">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{labels[mode].l1}</label>
-            <input
-              type="text"
-              value={waarde1}
-              onChange={(e) => setWaarde1(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">{labels[mode].l2}</label>
-            <input
-              type="text"
-              value={waarde2}
-              onChange={(e) => setWaarde2(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-        </div>
-
-        <button
-          onClick={bereken}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition"
-        >
-          Berekenen
-        </button>
-
-        {resultaat && (
-          <div className="mt-6 p-4 bg-green-50 rounded-lg text-center">
-            <p className="text-2xl font-bold text-green-700">{resultaat}</p>
-          </div>
-        )}
-      </div>
-    </div>
-  )
+    <>
+      <JsonLd data={softwareSchema} />
+      <JsonLd data={faqSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <ProcentCalculatorClient />
+    </>
+  );
 }
