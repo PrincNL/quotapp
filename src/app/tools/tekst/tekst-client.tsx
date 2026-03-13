@@ -10,7 +10,7 @@ import {
   Copy, 
   Trash2, 
   Type as TypeIcon,
-  Lowercase,
+  CaseLower,
   Sparkles
 } from "lucide-react";
 
@@ -142,7 +142,7 @@ export function TekstToolsClient() {
                 disabled={!tekst}
                 className="flex items-center gap-2 px-3 py-2 bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm"
               >
-                <Lowercase className="w-4 h-4" />
+                <CaseLower className="w-4 h-4" />
                 kleine letters
               </button>
 
