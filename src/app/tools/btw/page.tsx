@@ -40,7 +40,7 @@ export default function BTWCalculator() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <!-- Header -->
+      {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">BTW Calculator</h1>
         <p className="text-gray-600">
@@ -49,9 +49,9 @@ export default function BTWCalculator() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        <!-- Input Section -->
+        {/* Input Section */}
         <div className="md:col-span-2 bg-white rounded-xl shadow-md p-6">
-          <!-- Mode Toggle -->
+          {/* Mode Toggle */}
           <div className="flex gap-4 mb-6">
             <button
               onClick={() => setMode("excl")}
@@ -75,7 +75,7 @@ export default function BTWCalculator() {
             </button>
           </div>
 
-          <!-- Amount Input -->
+          {/* Amount Input */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               {mode === "excl" ? "Bedrag exclusief BTW (€)" : "Bedrag inclusief BTW (€)"}
@@ -92,7 +92,7 @@ export default function BTWCalculator() {
             </div>
           </div>
 
-          <!-- BTW Type -->
+          {/* BTW Type */}
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-2">BTW Percentage</label>
             <div className="flex gap-3">
@@ -126,7 +126,7 @@ export default function BTWCalculator() {
           </button>
         </div>
 
-        <!-- Results -->
+        {/* Results */}
         <div className="bg-white rounded-xl shadow-md p-6">
           <h3 className="font-bold text-lg mb-4 text-gray-900">Resultaat</h3>
           
@@ -164,7 +164,7 @@ export default function BTWCalculator() {
         </div>
       </div>
 
-      <!-- SEO Content -->
+      {/* SEO Content */}
       <div className="mt-12 bg-white rounded-xl shadow-md p-6">
         <h2 className="text-xl font-bold text-gray-900 mb-4">Hoe werkt de BTW calculator?</h2>
         <div className="prose text-gray-600">

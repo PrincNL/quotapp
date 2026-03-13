@@ -66,7 +66,7 @@ const tools = [
 export default function Home() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <!-- Hero Section -->
+      {/* Hero Section */}
       <div className="text-center mb-16">
         <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
           Gratis Online Rekentools
@@ -83,7 +83,7 @@ export default function Home() {
         </div>
       </div>
 
-      <!-- Tools Grid -->
+      {/* Tools Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {tools.map((tool) => (
           <Link
@@ -113,7 +113,7 @@ export default function Home() {
         ))}
       </div>
 
-      <!-- SEO Text -->
+      {/* SEO Text */}
       <div className="mt-16 max-w-3xl mx-auto text-center text-gray-600">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           Waarom QuotApp.nl?

@@ -27,7 +27,7 @@ export function Navbar() {
             QuotApp.nl
           </Link>
 
-          <!-- Desktop Menu -->
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-6">
             <Link href="/" className="hover:text-blue-200 transition">
               <Home className="w-5 h-5" />
@@ -43,7 +43,7 @@ export function Navbar() {
             ))}
           </div>
 
-          <!-- Mobile Menu Button -->
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsOpen(!isOpen)}
@@ -52,7 +52,7 @@ export function Navbar() {
           </button>
         </div>
 
-        <!-- Mobile Menu -->
+        {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-blue-500">
             <Link href="/" className="block py-2 hover:text-blue-200" onClick={() => setIsOpen(false)}>
