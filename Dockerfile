@@ -35,4 +35,4 @@ COPY --from=builder /app/node_modules ./node_modules
 EXPOSE 3000
 
 # Start with migrations - use shell to handle special chars in password
-CMD ["sh", "-c", "export DATABASE_URL=\"postgres://quotapp:68ny78nh8oU%28Mytn78t78y8uj@twog8sws8k8k8k0sowwco0w8:5432/quotapp?schema=public\" && echo 'Running migrations...' && ./node_modules/.bin/prisma migrate deploy && echo 'Starting app...' && node server.js"]
+CMD ["sh", "-c", "export DATABASE_URL=\"postgres://quotapp:quotapp2026securepass@w040c8wcgg80go0c0ck0scgk:5432/quotapp?schema=public\" && echo 'Running migrations...' && ./node_modules/.bin/prisma migrate deploy && echo 'Starting app...' && node server.js"]
