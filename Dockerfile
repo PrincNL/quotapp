@@ -9,7 +9,7 @@ COPY . .
 # Install all dependencies
 RUN npm ci
 
-# Generate Prisma client
+# Generate Prisma client (build time)
 RUN npx prisma generate
 
 # Build the Next.js app
