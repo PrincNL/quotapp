@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield } from "lucide-react";
+import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield, PiggyBank, Euro } from "lucide-react";
 import { QuoteOfTheDay } from "@/components/quote-of-the-day";
 import { RecentlyUsed, FavoriteTools, ToolStats } from "@/components/tool-activity";
 import { BadgeDisplay } from "@/components/badge-display";
@@ -12,17 +12,6 @@ import { JsonLd } from "@/components/json-ld";
 
 const tools = [
   {
-    name: "BTW Calculator",
-    shortName: "BTW",
-    description: "Bereken 21%, 9% of 0% BTW eenvoudig",
-    href: "/tools/btw",
-    icon: Calculator,
-    color: "from-blue-500 to-blue-600",
-    bgColor: "bg-blue-500",
-    popular: true,
-    keywords: ["btw berekenen", "21 btw", "9 btw"],
-  },
-  {
     name: "Hypotheek Calculator",
     shortName: "Hypotheek",
     description: "Bereken je maandlasten en maximale hypotheek",
@@ -34,14 +23,56 @@ const tools = [
     keywords: ["hypotheek berekenen", "maximale hypotheek", "maandlasten"],
   },
   {
+    name: "Lening Calculator",
+    shortName: "Lening",
+    description: "Bereken maandlasten voor persoonlijke leningen",
+    href: "/tools/lening",
+    icon: Euro,
+    color: "from-green-600 to-emerald-700",
+    bgColor: "bg-green-600",
+    popular: true,
+    keywords: ["lening berekenen", "lening calculator", "maandlasten lening"],
+  },
+  {
+    name: "Sparen Calculator",
+    shortName: "Sparen",
+    description: "Bereken je spaarrendement met rente-op-rente",
+    href: "/tools/sparen",
+    icon: PiggyBank,
+    color: "from-blue-600 to-indigo-700",
+    bgColor: "bg-blue-600",
+    popular: true,
+    keywords: ["sparen berekenen", "spaarrente", "rente op rente"],
+  },
+  {
+    name: "BTW Calculator",
+    shortName: "BTW",
+    description: "Bereken 21%, 9% of 0% BTW eenvoudig",
+    href: "/tools/btw",
+    icon: Calculator,
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-500",
+    popular: true,
+    keywords: ["btw berekenen", "21 btw", "9 btw"],
+  },
+  {
+    name: "Rente Calculator",
+    shortName: "Rente",
+    description: "Bereken rente-op-rente en kredietaflossingen",
+    href: "/tools/rente",
+    icon: Percent,
+    color: "from-purple-500 to-pink-600",
+    bgColor: "bg-purple-500",
+    keywords: ["rente berekenen", "rentevoet", "kredietrente"],
+  },
+  {
     name: "Procent Calculator",
     shortName: "Procent",
     description: "Percentage berekeningen makkelijk gemaakt",
     href: "/tools/procent",
     icon: Percent,
-    color: "from-purple-500 to-purple-600",
-    bgColor: "bg-purple-500",
-    popular: true,
+    color: "from-purple-400 to-purple-500",
+    bgColor: "bg-purple-400",
     keywords: ["procent berekenen", "percentage calculator"],
   },
   {
@@ -53,16 +84,6 @@ const tools = [
     color: "from-orange-500 to-orange-600",
     bgColor: "bg-orange-500",
     keywords: ["iban check", "iban validator"],
-  },
-  {
-    name: "Tekst Tools",
-    shortName: "Tekst",
-    description: "Woorden tellen, karakters tellen, leestijd",
-    href: "/tools/tekst",
-    icon: Type,
-    color: "from-pink-500 to-pink-600",
-    bgColor: "bg-pink-500",
-    keywords: ["woorden tellen", "karakters tellen"],
   },
   {
     name: "Valuta Converter",
@@ -83,6 +104,16 @@ const tools = [
     color: "from-teal-500 to-teal-600",
     bgColor: "bg-teal-500",
     keywords: ["dagen berekenen", "datum verschil"],
+  },
+  {
+    name: "Tekst Tools",
+    shortName: "Tekst",
+    description: "Woorden tellen, karakters tellen, leestijd",
+    href: "/tools/tekst",
+    icon: Type,
+    color: "from-pink-500 to-pink-600",
+    bgColor: "bg-pink-500",
+    keywords: ["woorden tellen", "karakters tellen"],
   },
   {
     name: "BMI Calculator",
@@ -181,7 +212,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary">
                 <Calculator className="w-4 h-4" />
-                <span>8+ Tools</span>
+                <span>11 Tools</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
                 <TrendingUp className="w-4 h-4" />
@@ -233,10 +264,10 @@ export default function Home() {
             <div className="mb-12">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold">Alle Rekentools</h2>
-                <span className="text-sm text-muted-foreground">8 tools beschikbaar</span>
+                <span className="text-sm text-muted-foreground">11 tools beschikbaar</span>
               </div>
               <p className="text-muted-foreground mb-6 max-w-2xl">
-                Kies uit onze collectie van 8+ gratis online rekentools. 
+                Kies uit onze collectie van 11 gratis online rekentools. 
                 Van <Link href="/tools/btw" className="text-primary hover:underline">BTW berekenen</Link> tot 
                 je <Link href="/tools/hypotheek" className="text-primary hover:underline">maximale hypotheek berekenen</Link> - 
                 alles werkt direct in je browser.

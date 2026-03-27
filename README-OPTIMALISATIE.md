@@ -176,3 +176,52 @@ src/
 ## 📝 Documentatie
 
 Zie `OPTIMALISATIE.md` voor volledige technische details.
+
+# 💰 MONETISATIE STRATEGIE - 2026-03-27
+
+## Huidige Setup
+- Google AdSense geïntegreerd
+- 9 ad slots geplaatst
+- Responsive ads voor alle apparaten
+
+## Volgende Stappen voor Maximaal Inkomen
+
+### 1. MEER VERKEER
+- SEO optimalisatie (keywords, meta tags, sitemap)
+- Blog posts toevoegen (SEO content)
+- Social media sharing
+- Backlinks opbouwen
+
+### 2. MEER PAGINA'S
+- Elke tool = nieuwe pagina = meer ads
+- Blog sectie met 10+ artikelen
+- FAQ pagina
+- Over ons pagina
+
+### 3. BETERE ADS
+- AdSense experimenten (A/B test verschillende formaten)
+- Ad refresh na scroll
+- Sticky ads die meescrollen
+- Interstitial ads (met mate)
+
+### 4. HIGH CPC KEYWORDS
+Focus op keywords met hoge CPC:
+- "hypotheek berekenen" (€2-5 per klik)
+- "btw berekenen" (€1-3 per klik)
+- "lening berekenen" (€3-6 per klik)
+- "rente berekenen" (€2-4 per klik)
+
+### 5. NIEUWE TOOLS TOEVOEGEN
+Tools met hoge zoekvolume:
+- Sparen/rente calculator
+- Lening calculator
+- Omzetbelasting calculator
+- Verlof calculator
+- Aftrekposten calculator
+
+## GROOTSTE GELegenheid
+De hypotheek tool heeft de HOOGSTE CPC. Focus op:
+1. Optimale SEO voor "hypotheek berekenen"
+2. Uitgebreide content over hypotheken
+3. Extra tools: "maximale hypotheek", "annuïteitenhypotheek", etc.
+
