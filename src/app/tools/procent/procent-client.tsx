@@ -7,7 +7,7 @@ import { useRecentTools } from "@/hooks/use-tool-storage";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ShareResult } from "@/components/share-result";
 import { FeedbackForm } from "@/components/feedback-form";
-import { StickyAd, InlineAd } from "@/components/ad-components";
+import { StickyAd, InlineAd, ToolTopBannerAd, BottomAd, SmartInlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import Link from "next/link";
@@ -133,6 +133,9 @@ export function ProcentCalculatorClient() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
+      {/* TOP BANNER AD - New placement for tool pages */}
+      <ToolTopBannerAd slot={AD_SLOTS.toolTop} />
+      
       <div className="grid lg:grid-cols-[1fr,300px] gap-8">
         <div>
           {/* Header */}
@@ -288,8 +291,8 @@ export function ProcentCalculatorClient() {
             </motion.div>
           </motion.div>
 
-          {/* Ad after result */}
-          <InlineAd slot="procent-after-result" />
+          {/* Ad after result - lazy loaded */}
+          <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
 
           {/* SEO Content Section - Uitgebreid */}
           <motion.div 
@@ -419,7 +422,7 @@ export function ProcentCalculatorClient() {
           </motion.div>
 
           {/* Ad before FAQ */}
-          <InlineAd slot="procent-before-faq" />
+          <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
 
           {/* FAQ Section */}
           <FAQSection items={procentFAQ} title="Veelgestelde vragen over percentages" />
@@ -431,9 +434,12 @@ export function ProcentCalculatorClient() {
           <div className="mt-8 flex justify-center">
             <FeedbackForm toolName="Procent Calculator" />
           </div>
+
+          {/* BOTTOM AD - New for tool pages */}
+          <BottomAd slot={AD_SLOTS.toolBottom} />
         </div>
 
-        <StickyAd slot="procent-sidebar-1" />
+        <StickyAd slot={AD_SLOTS.toolSidebar} />
       </div>
     </div>
   );

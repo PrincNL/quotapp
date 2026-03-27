@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Calculator, Euro, Calendar, ArrowRight, RotateCcw, Info } from "lucide-react";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ShareResult } from "@/components/share-result";
-import { InlineAd, StickyAd, AD_SLOTS } from "@/components/ad-components";
+import { InlineAd, StickyAd, ToolTopBannerAd, BottomAd, SmartInlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import Link from "next/link";
 
@@ -103,6 +103,9 @@ export function LeningCalculatorClient() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
+      {/* TOP BANNER AD - New placement for tool pages */}
+      <ToolTopBannerAd slot={AD_SLOTS.toolTop} />
+      
       <div className="grid lg:grid-cols-[1fr,300px] gap-8">
         <div>
           {/* Header */}
@@ -295,8 +298,11 @@ export function LeningCalculatorClient() {
             </div>
           </motion.div>
 
-          {/* Ad */}
-          <InlineAd slot={AD_SLOTS.toolInline} />
+          {/* Ad after result - lazy loaded */}
+          <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
+
+          {/* Ad before related tools */}
+          <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
 
           {/* SEO Content */}
           <div className="mt-12 card">
@@ -339,6 +345,9 @@ export function LeningCalculatorClient() {
               </Link>
             </div>
           </div>
+
+          {/* BOTTOM AD - New for tool pages */}
+          <BottomAd slot={AD_SLOTS.toolBottom} />
         </div>
 
         {/* Sidebar */}

@@ -7,7 +7,7 @@ import { useRecentTools } from "@/hooks/use-tool-storage";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ShareResult } from "@/components/share-result";
 import { FeedbackForm } from "@/components/feedback-form";
-import { StickyAd, InlineAd, AD_SLOTS } from "@/components/ad-components";
+import { StickyAd, InlineAd, ToolTopBannerAd, BottomAd, SmartInlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import Link from "next/link";
@@ -127,6 +127,9 @@ export function BTWCalculatorClient() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
+      {/* TOP BANNER AD - New placement for tool pages */}
+      <ToolTopBannerAd slot={AD_SLOTS.toolTop} />
+      
       <div className="grid lg:grid-cols-[1fr,300px] gap-8">
         <div>
           {/* Header */}
@@ -504,6 +507,9 @@ export function BTWCalculatorClient() {
             </div>
           </motion.div>
 
+          {/* Ad after result - lazy loaded */}
+          <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
+
           {/* Ad before FAQ */}
           <InlineAd slot={AD_SLOTS.toolInline} />
 
@@ -517,6 +523,9 @@ export function BTWCalculatorClient() {
           <div className="mt-8 flex justify-center">
             <FeedbackForm toolName="BTW Calculator" />
           </div>
+
+          {/* BOTTOM AD - New for tool pages */}
+          <BottomAd slot={AD_SLOTS.toolBottom} />
         </div>
 
         {/* Sticky Ad Sidebar */}

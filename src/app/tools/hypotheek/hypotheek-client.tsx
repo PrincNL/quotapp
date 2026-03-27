@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Home, Euro, TrendingUp, Users, RotateCcw, BookOpen, Lightbulb, Info } from "lucide-react";
-import { InlineAd, StickyAd } from "@/components/ad-components";
+import { InlineAd, StickyAd, ToolTopBannerAd, BottomAd, SmartInlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import { FeedbackForm } from "@/components/feedback-form";
@@ -118,6 +118,9 @@ export function HypotheekCalculatorClient() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
+      {/* TOP BANNER AD - New placement for tool pages */}
+      <ToolTopBannerAd slot={AD_SLOTS.toolTop} />
+      
       <div className="grid lg:grid-cols-[1fr,300px] gap-8">
         <div>
           {/* Header */}
@@ -467,8 +470,11 @@ export function HypotheekCalculatorClient() {
             </div>
           </motion.div>
 
+          {/* Ad after result - lazy loaded */}
+          <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
+
           {/* Ad before FAQ */}
-          <InlineAd slot="hypotheek-before-faq" />
+          <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
 
           {/* FAQ Section */}
           <FAQSection items={hypotheekFAQ} title="Veelgestelde vragen over hypotheken" />
@@ -480,10 +486,13 @@ export function HypotheekCalculatorClient() {
           <div className="mt-8 flex justify-center">
             <FeedbackForm toolName="Hypotheek Calculator" />
           </div>
+
+          {/* BOTTOM AD - New for tool pages */}
+          <BottomAd slot={AD_SLOTS.toolBottom} />
         </div>
 
         {/* Sticky Ad Sidebar */}
-        <StickyAd slot="hypotheek-sidebar-1" />
+        <StickyAd slot={AD_SLOTS.toolSidebar} />
       </div>
     </div>
   );
