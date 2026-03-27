@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
-import { Metadata as NextMetadata } from "next";
+import { Metadata } from "next";
+import { ProcentCalculatorClient } from "./procent-client";
+import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "Procent Berekenen | Gratis Procent Calculator",
-  description: "Bereken percentages eenvoudig: percentage van bedrag, percentage verhoging/verlaging, percentage verschil en meer. Gratis online procent tool.",
-  keywords: ["procent berekenen", "percentage calculator", "percentage van", "procenten rekenen", "percentage verhoging", "percentage korting"],
+  title: "Procent Calculator 2026 - Percentage Berekenen | QuotApp.nl",
+  description: "Bereken percentages eenvoudig: korting, stijging, daling, en meer. Gratis percentage calculator met alle basistechnieken. Snel en accuraat!",
+  keywords: ["procent calculator", "percentage berekenen", "korting berekenen", "procent stijging", "procent daling"],
   openGraph: {
-    title: "Procent Calculator - Percentages Eenvoudig Berekenen",
-    description: "Gratis procent calculator voor alle percentage berekeningen",
+    title: "Procent Calculator - Percentage van een Getal Berekenen",
+    description: "Reken snel en eenvoudig met percentages",
     url: "https://quotapp.nl/tools/procent",
   },
   alternates: {
@@ -15,81 +16,56 @@ export const metadata: Metadata = {
   },
 };
 
-// SoftwareApplication Schema
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Procent Calculator",
-  applicationCategory: "FinanceApplication",
+  applicationCategory: "UtilityApplication",
   operatingSystem: "Web",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "EUR",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.7",
-    ratingCount: "890",
-  },
-  description: "Bereken percentages eenvoudig online",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  description: "Bereken percentages, kortingen en procentuele veranderingen",
   url: "https://quotapp.nl/tools/procent",
 };
 
-// FAQ Schema
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: [
     {
       "@type": "Question",
-      name: "Hoe bereken ik een percentage van een bedrag?",
+      name: "Hoe bereken je een percentage van een getal?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Om een percentage van een bedrag te berekenen, vermenigvuldig je het bedrag met het percentage en deel je door 100. Bijvoorbeeld: 21% van €100 = (21 × 100) ÷ 100 = €21.",
+        text: "Vermenigvuldig het getal met het percentage en deel door 100. Bijvoorbeeld: 20% van €150 = €150 × 0,20 = €30.",
       },
     },
     {
       "@type": "Question",
-      name: "Hoe bereken ik een percentage verhoging?",
+      name: "Hoe bereken je een procentuele stijging?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Voor een percentage verhoging: nieuwe waarde = oude waarde × (1 + percentage ÷ 100). Bijvoorbeeld: €100 met 20% verhoging = €100 × 1,20 = €120.",
+        text: "Deel het verschil tussen de nieuwe en oude waarde door de oude waarde en vermenigvuldig met 100. Bijvoorbeeld: van €100 naar €125 is een stijging van 25%.",
       },
     },
     {
       "@type": "Question",
-      name: "Hoe bereken ik het percentage verschil?",
+      name: "Hoe bereken je een korting?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Het percentage verschil = ((nieuwe waarde - oude waarde) ÷ oude waarde) × 100. Bijvoorbeeld: van €80 naar €100 = ((100-80) ÷ 80) × 100 = 25%.",
+        text: "Bereken eerst het kortingsbedrag (percentage × prijs) en trek dit af van de oorspronkelijke prijs. Of vermenigvuldig direct met (100% - korting%).",
       },
     },
   ],
 };
 
-// Breadcrumb Schema
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://quotapp.nl",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Procent Calculator",
-      item: "https://quotapp.nl/tools/procent",
-    },
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://quotapp.nl" },
+    { "@type": "ListItem", position: 2, name: "Procent Calculator", item: "https://quotapp.nl/tools/procent" },
   ],
 };
-
-import { ProcentCalculatorClient } from "./procent-client";
-import { JsonLd } from "@/components/json-ld";
 
 export default function ProcentCalculatorPage() {
   return (

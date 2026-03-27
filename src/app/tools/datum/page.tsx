@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { DatumCalculatorClient } from "./datum-client";
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "Datum Berekenen | Dagen Tussen Datums",
-  description: "Bereken het verschil tussen twee datums. Werkdagen tellen, weken, maanden en jaren berekenen. Gratis datum calculator.",
-  keywords: ["dagen berekenen", "datum verschil", "werkdagen tellen", "datum calculator", "dagen tussen"],
+  title: "Datum Calculator 2026 - Dagen Tellen & Leeftijd Berekenen | QuotApp.nl",
+  description: "Bereken het aantal dagen tussen twee data, je leeftijd, of tel werkdagen. Handige datum calculator voor Nederland.",
+  keywords: ["datum calculator", "dagen tellen", "leeftijd berekenen", "werkdagen berekenen", "datumverschil"],
   openGraph: {
-    title: "Datum Calculator - Dagen Tussen Twee Datums",
-    description: "Bereken het verschil tussen datums",
+    title: "Datum Calculator - Dagen Tellen en Leeftijd Berekenen",
+    description: "Bereken eenvoudig datumverschillen en werkdagen",
     url: "https://quotapp.nl/tools/datum",
   },
   alternates: {
@@ -23,7 +23,7 @@ const softwareSchema = {
   applicationCategory: "UtilityApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-  description: "Bereken het verschil tussen twee datums",
+  description: "Bereken dagen tussen data, leeftijd en werkdagen",
   url: "https://quotapp.nl/tools/datum",
 };
 
@@ -33,10 +33,18 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Hoeveel werkdagen zitten er in een jaar?",
+      name: "Hoe bereken je het aantal dagen tussen twee data?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "In een normaal jaar zijn er 261 werkdagen (exclusief weekenden). In een schrikkeljaar zijn dat er 262.",
+        text: "Trek de startdatum van de einddatum af. Tel vervolgens het aantal dagen, waarbij je rekening houdt met de verschillende aantal dagen per maand.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Worden weekends meegeteld in werkdagen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nee, bij werkdagen worden alleen maandag tot en met vrijdag meegeteld. Zaterdag en zondag worden niet als werkdagen beschouwd.",
       },
     },
   ],

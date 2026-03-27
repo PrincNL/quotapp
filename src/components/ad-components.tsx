@@ -257,6 +257,15 @@ export function InlineAd({ slot, lazyLoad = false }: { slot: string; lazyLoad?: 
   );
 }
 
+// In-article ad - displayed within article content
+export function InArticleAd({ slot }: { slot: string }) {
+  return (
+    <AdContainer className="my-6 max-w-[336px] mx-auto" collapsible>
+      <AdBanner slot={slot} format="auto" lazyLoad={true} />
+    </AdContainer>
+  );
+}
+
 // NEW: Smart inline ad - only shows when user has scrolled past content
 export function SmartInlineAd({ slot, afterContent = true }: { slot: string; afterContent?: boolean }) {
   const { ref, isVisible } = useAdVisibility(slot, 'smart-inline');

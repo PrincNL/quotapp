@@ -106,12 +106,66 @@ const articlesSchema = {
 };
 
 export const metadata = {
-  title: "Blog | Rekentips, Financiën en Online Tools",
-  description: "Lees artikelen over btw berekenen, hypotheek berekenen, procenten en meer. Handige tips en uitleg over onze rekentools.",
-  keywords: ["blog", "rekenen", "financiën", "btw", "hypotheek", "tips"],
+  title: "Blog | Rekentips, Financiën en Online Tools | QuotApp.nl",
+  description: "Lees artikelen over btw berekenen, hypotheek berekenen, procenten en meer. Handige tips en uitleg over onze rekentools. Gebaseerd op officiële Nederlandse regelgeving.",
+  keywords: ["blog", "rekenen", "financiën", "btw", "hypotheek", "tips", "lening", "sparen", "geldzaken", "nederlandse financiën", "belastingen"],
   alternates: {
     canonical: "https://quotapp.nl/blog",
   },
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    url: "https://quotapp.nl/blog",
+    siteName: "QuotApp.nl",
+    title: "QuotApp.nl Blog - Artikelen over Rekenen en Financiën",
+    description: "Handige artikelen over btw berekenen, hypotheek berekenen, procenten en meer. Tips en uitleg voor onze gratis rekentools.",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "QuotApp.nl Blog - Financiële artikelen",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "QuotApp.nl Blog - Artikelen over Rekenen en Financiën",
+    description: "Handige artikelen over btw berekenen, hypotheek berekenen, procenten en meer.",
+    images: ["/og-image.jpg"],
+  },
+};
+
+// FAQ Schema voor blog pagina
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Zijn jullie artikelen gebaseerd op betrouwbare bronnen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja, al onze artikelen zijn gebaseerd op officiële bronnen zoals de Belastingdienst, Rijksoverheid en andere betrouwbare financiële instanties. We verwijzen naar deze bronnen onderaan elk artikel.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hoe vaak worden jullie artikelen bijgewerkt?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Onze artikelen worden minimaal jaarlijks gecontroleerd en bijgewerkt bij wijzigingen in wet- en regelgeving. Bij belangrijke wijzigingen passen we artikelen direct aan.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Kan ik jullie artikelen delen?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ja, je mag onze artikelen delen via sociale media of doorlinken naar onze pagina's. Vermeld daarbij quotapp.nl als bron.",
+      },
+    },
+  ],
 };
 
 export default function BlogPage() {
@@ -119,6 +173,7 @@ export default function BlogPage() {
     <div className="container mx-auto px-4 py-12 max-w-5xl">
       <JsonLd data={blogSchema} />
       <JsonLd data={articlesSchema} />
+      <JsonLd data={faqSchema} />
 
       {/* Header */}
       <div className="text-center mb-12">

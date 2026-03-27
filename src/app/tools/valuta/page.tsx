@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { ValutaConverterClient } from "./valuta-client";
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "Valuta Omrekenen | EUR USD GBP Converter",
-  description: "Zet valuta's om: Euro, Dollar, Pond, Yen en meer. Wisselkoers calculator voor reizen en zakelijk gebruik. Gratis valuta converter.",
-  keywords: ["valuta omrekenen", "euro dollar", "wisselkoers", "valuta converter", "eur usd"],
+  title: "Valuta Converter 2026 - Wisselkoersen Omrekenen | QuotApp.nl",
+  description: "Converteer valuta's met actuele wisselkoersen. EUR, USD, GBP, en meer. Snelle valuta calculator voor Nederland.",
+  keywords: ["valuta converter", "wisselkoers", "euro naar dollar", "valuta omrekenen", "USD EUR GBP"],
   openGraph: {
-    title: "Valuta Converter - EUR USD GBP en meer",
-    description: "Reisgeld en zakelijke valuta omrekenen",
+    title: "Valuta Converter - Wisselkoersen Omrekenen",
+    description: "Converteer valuta's snel met actuele wisselkoersen",
     url: "https://quotapp.nl/tools/valuta",
   },
   alternates: {
@@ -23,7 +23,7 @@ const softwareSchema = {
   applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-  description: "Zet valuta's om naar andere munten",
+  description: "Converteer valuta's met actuele wisselkoersen",
   url: "https://quotapp.nl/tools/valuta",
 };
 
@@ -33,10 +33,18 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Welke valuta's kan ik omrekenen?",
+      name: "Hoe vaak worden de wisselkoersen bijgewerkt?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Deze calculator ondersteunt EUR (Euro), USD (Dollar), GBP (Britse Pond), CHF (Zwitserse Frank), JPY (Japanse Yen), CAD (Canadese Dollar), AUD (Australische Dollar) en CNY (Chinese Yuan).",
+        text: "De wisselkoersen worden dagelijks bijgewerkt op basis van Europese Centrale Bank gegevens. Voor de meest actuele koersen raden we aan om vlak voor je transactie te controleren.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Zijn de wisselkoersen inclusief transactiekosten?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nee, de getoonde koersen zijn indicatief en exclusief eventuele transactiekosten, provisie of toeslagen van banken of wisselkantoren.",
       },
     },
   ],
@@ -51,7 +59,7 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function ValutaConverterPage() {
+export default function ValutaCalculatorPage() {
   return (
     <>
       <JsonLd data={softwareSchema} />

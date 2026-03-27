@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield, PiggyBank, Euro, Car, Heart, Sun, Receipt, Breadcrumb, Home } from "lucide-react";
+import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield, PiggyBank, Euro, Car, Heart, Sun, Receipt } from "lucide-react";
 import { QuoteOfTheDay } from "@/components/quote-of-the-day";
 import { RecentlyUsed, FavoriteTools, ToolStats } from "@/components/tool-activity";
 import { BadgeDisplay } from "@/components/badge-display";
@@ -9,6 +9,7 @@ import { InlineAd, TopBannerAd, StickyAd, AnchorAd, RectangleAd, AD_SLOTS } from
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import { JsonLd } from "@/components/json-ld";
+import { SocialProof, testimonialsSchema, aggregateRatingSchema } from "@/components/social-proof";
 
 const tools = [
   {
@@ -275,6 +276,8 @@ export default function Home() {
       <JsonLd data={webpageSchema} />
       <JsonLd data={collectionPageSchema} />
       <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={testimonialsSchema} />
+      <JsonLd data={aggregateRatingSchema} />
       
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background pt-16 pb-12">
@@ -333,6 +336,9 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Social Proof Section - E-E-A-T Trust Signal */}
+      <SocialProof />
 
       {/* Main Content with Sidebar Ad for Desktop */}
       <div className="container mx-auto px-4 py-12">

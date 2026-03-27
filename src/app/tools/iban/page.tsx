@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { IBANCheckerClient } from "./iban-client";
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "IBAN Check | IBAN Nummer Controle (Nederlands)",
-  description: "Controleer of een IBAN nummer geldig is. Internationale IBAN validatie met mod 97 check. Gratis online IBAN checker.",
-  keywords: ["iban check", "iban controle", "iban nummer valideren", "iban validatie", "nederlandse iban"],
+  title: "IBAN Checker 2026 - IBAN Valideren & Controleren | QuotApp.nl",
+  description: "Controleer of een IBAN nummer geldig is met onze gratis IBAN checker. Validatie voor Nederlandse en internationale IBAN nummers.",
+  keywords: ["iban checker", "iban valideren", "iban controleren", "bankrekeningnummer", "iban validator"],
   openGraph: {
-    title: "IBAN Checker - Controleer IBAN Nummers",
-    description: "Valideer IBAN nummers wereldwijd",
+    title: "IBAN Checker - Valideer IBAN Nummers",
+    description: "Controleer of een IBAN nummer geldig is",
     url: "https://quotapp.nl/tools/iban",
   },
   alternates: {
@@ -20,10 +20,10 @@ const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "IBAN Checker",
-  applicationCategory: "UtilityApplication",
+  applicationCategory: "FinanceApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-  description: "Controleer of een IBAN nummer geldig is",
+  description: "Valideer en controleer IBAN nummers",
   url: "https://quotapp.nl/tools/iban",
 };
 
@@ -33,18 +33,26 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Hoe controleer je of een IBAN geldig is?",
+      name: "Hoe controleer ik een IBAN nummer?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Een IBAN wordt gevalideerd met de MOD 97 algoritme. De eerste twee letters (landcode) en twee cijfers (controlegetal) worden naar het einde verplaatst, letters worden omgezet in cijfers, en het resultaat moet deelbaar zijn door 97.",
+        text: "Onze IBAN checker valideert het nummer automatisch met het MOD-97 algoritme. Voer de IBAN in (met of zonder spaties) en klik op Controleren.",
       },
     },
     {
       "@type": "Question",
-      name: "Hoe lang is een Nederlands IBAN?",
+      name: "Wat is het MOD-97 algoritme?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Een Nederlands IBAN bestaat uit 18 tekens: NL + 2 cijfers + 4 letters (bankcode) + 10 cijfers (rekeningnummer).",
+        text: "Het MOD-97 algoritme is een wiskundige controle die bestaat uit het verplaatsen van de landcode naar achteren, converteren naar cijfers, en controleren of de rest bij deling door 97 gelijk is aan 1.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Is een geldige IBAN garantie voor een bestaande rekening?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nee, een geldige IBAN betekent alleen dat de structuur correct is. Het garandeert niet dat de rekening actief is of dat het bij de juiste persoon hoort.",
       },
     },
   ],
@@ -59,7 +67,7 @@ const breadcrumbSchema = {
   ],
 };
 
-export default function IBANCheckerPage() {
+export default function IBANCalculatorPage() {
   return (
     <>
       <JsonLd data={softwareSchema} />

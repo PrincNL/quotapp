@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Calendar, Clock, ArrowLeft, Share2, User } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, User } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { InlineAd, InArticleAd } from "@/components/ad-components";
 import { RelatedTools } from "@/components/related-tools";
+import { ShareButton } from "@/components/share-button";
 
 // Blog posts content
 const blogPosts = {
@@ -1024,21 +1025,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <h3 className="font-semibold mb-1">Vond je dit artikel nuttig?</h3>
             <p className="text-sm text-muted-foreground">Deel het met anderen die hier ook wat aan hebben.</p>
           </div>
-          <button 
-            onClick={() => {
-              if (navigator.share) {
-                navigator.share({
-                  title: post.title,
-                  text: post.excerpt,
-                  url: `https://quotapp.nl/blog/${params.slug}`,
-                });
-              }
-            }}
-            className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-          >
-            <Share2 className="w-4 h-4" />
-            Delen
-          </button>
+          <ShareButton 
+            title={post.title}
+            text={post.excerpt}
+            url={`https://quotapp.nl/blog/${params.slug}`}
+          />
         </div>
       </div>
 

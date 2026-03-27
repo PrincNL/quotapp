@@ -1,14 +1,14 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import { TekstToolsClient } from "./tekst-client";
 import { JsonLd } from "@/components/json-ld";
 
 export const metadata: Metadata = {
-  title: "Tekst Analyse | Woorden Tellen, Karakters, Leestijd",
-  description: "Analyseer je tekst: woorden tellen, karakters tellen, leestijd berekenen, zinnen tellen. Handige tekst tools voor schrijvers.",
-  keywords: ["woorden tellen", "karakters tellen", "tekst analyse", "leestijd", "zinnen tellen"],
+  title: "Tekst Analyzer 2026 - Woorden Tellen & Karakters Tellen | QuotApp.nl",
+  description: "Tel woorden, karakters en bereken leestijd. Gratis tekst analyzer voor writers, studenten en professionals.",
+  keywords: ["tekst analyzer", "woorden tellen", "karakters tellen", "leestijd berekenen", "letter teller"],
   openGraph: {
-    title: "Tekst Tools - Woorden en Karakters Tellen",
-    description: "Analyseer en bewerk je tekst",
+    title: "Tekst Analyzer - Tel Woorden, Karakters en Bereken Leestijd",
+    description: "Analyseer je tekst: tel woorden, karakters en meer",
     url: "https://quotapp.nl/tools/tekst",
   },
   alternates: {
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
 const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Tekst Tools",
+  name: "Tekst Analyzer",
   applicationCategory: "UtilityApplication",
   operatingSystem: "Web",
   offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
-  description: "Analyseer je tekst met woorden tellen en meer",
+  description: "Tel woorden, karakters en bereken leestijd",
   url: "https://quotapp.nl/tools/tekst",
 };
 
@@ -33,10 +33,18 @@ const faqSchema = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Hoe bereken je leestijd?",
+      name: "Hoeveel woorden telt een gemiddelde pagina?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "De gemiddelde leessnelheid is ongeveer 200-250 woorden per minuut. Deze tool gebruikt 200 wpm als uitgangspunt voor de leestijdberekening.",
+        text: "Een gemiddelde pagina bevat ongeveer 250-300 woorden bij standaard opmaak (12pt lettertype, dubbele regelafstand voor documenten).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Wat is de gemiddelde leessnelheid?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "De gemiddelde leessnelheid voor volwassenen is ongeveer 200-250 woorden per minuut. Dit kan variëren afhankelijk van de complexiteit van de tekst.",
       },
     },
   ],
@@ -47,11 +55,11 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://quotapp.nl" },
-    { "@type": "ListItem", position: 2, name: "Tekst Tools", item: "https://quotapp.nl/tools/tekst" },
+    { "@type": "ListItem", position: 2, name: "Tekst Analyzer", item: "https://quotapp.nl/tools/tekst" },
   ],
 };
 
-export default function TekstToolsPage() {
+export default function TekstCalculatorPage() {
   return (
     <>
       <JsonLd data={softwareSchema} />

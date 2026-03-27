@@ -81,7 +81,7 @@
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
   
-  /* Transitions */
+  /* Transitions - Performance optimalized */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -149,15 +149,19 @@
   --shadow-glow-lg: 0 0 60px -15px hsl(var(--primary) / 0.3);
 }
 
-/* Base styles */
+/* Base styles - CLS prevention */
 * {
   border-color: hsl(var(--border));
+  /* Font-display swap voorkomt FOIT (Flash of Invisible Text) */
+  font-display: swap;
 }
 
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   transition: background-color var(--transition-base), color var(--transition-base);
+  /* Content-visibility voor betere rendering performance */
+  content-visibility: auto;
 }
 
 /* Focus visible styles */
@@ -190,12 +194,12 @@ body {
   background: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling - met fallback voor reduced-motion */
 html {
   scroll-behavior: smooth;
 }
 
-/* Reduced motion */
+/* Reduced motion - accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -255,7 +259,7 @@ html {
     50% { background-position: 100% 50%; }
   }
   
-  /* Card Styles */
+  /* Card Styles - met aspect-ratio voor CLS preventie */
   .card {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
@@ -263,6 +267,8 @@ html {
     padding: 1.5rem;
     box-shadow: var(--shadow);
     transition: all var(--transition-base);
+    /* CLS preventie - minimale hoogte voor placeholders */
+    min-height: 1px;
   }
   
   .card:hover {
@@ -279,6 +285,7 @@ html {
     padding: 1.5rem;
     box-shadow: var(--shadow);
     transition: all var(--transition-base);
+    min-height: 1px;
   }
   
   .card-glass:hover {
@@ -329,7 +336,7 @@ html {
     box-shadow: var(--shadow-glow-lg);
   }
   
-  /* Loading Skeleton */
+  /* Loading Skeleton - CLS preventie met vaste dimensies */
   .skeleton {
     background: linear-gradient(90deg, 
       hsl(var(--muted)) 25%, 
@@ -339,6 +346,9 @@ html {
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s ease-in-out infinite;
     border-radius: var(--radius);
+    /* Vaste dimensies voor CLS preventie */
+    min-height: 1rem;
+    min-width: 100%;
   }
   
   @keyframes skeleton-loading {
@@ -371,16 +381,18 @@ html {
     left: 100%;
   }
   
-  /* Ad Container - Improved */
+  /* Ad Container - CLS preventie met minimale hoogte */
   .ad-container {
     background: hsl(var(--muted) / 0.3);
     border: 1px dashed hsl(var(--border));
     border-radius: var(--radius-md);
-    min-height: 100px;
+    min-height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-base);
+    /* Vaste hoogte voorkomt CLS van advertenties */
+    contain: layout style;
   }
   
   .ad-container:hover {
@@ -397,6 +409,8 @@ html {
     background-size: 200% 100%;
     animation: ad-shimmer 2s ease-in-out infinite;
     border-radius: var(--radius-md);
+    min-height: 90px;
+    min-width: 100%;
   }
   
   @keyframes ad-shimmer {
@@ -451,9 +465,10 @@ html {
   }
 }
 
-/* Google Ads responsive sizing */
+/* Google Ads responsive sizing - CLS preventie met minimale hoogte */
 ins.adsbygoogle {
   min-height: 90px;
+  display: block;
 }
 
 @media (min-width: 728px) {
@@ -492,4 +507,19 @@ ins.adsbygoogle {
 
 .prose strong {
   color: hsl(var(--foreground));
+}
+
+/* Font optimization - preload font metrics */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: local('Inter');
+}
+
+/* Content-visibility voor betere rendering performance */
+.content-area {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
 }
