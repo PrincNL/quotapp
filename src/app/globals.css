@@ -18,9 +18,9 @@
   --accent: 210 40% 96.1%;
   --accent-foreground: 222.2 47.4% 11.2%;
   
-  /* Muted Colors */
+  /* Muted Colors - More visible for accessibility */
   --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted-foreground: 215.4 16.3% 40%;
   
   /* Card Colors */
   --card: 0 0% 100%;
@@ -105,7 +105,7 @@
   --accent-foreground: 210 40% 98%;
   
   --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted-foreground: 215 20.2% 75%; /* More visible for dark mode */
   
   --card: 222.2 84% 4.9%;
   --card-foreground: 210 40% 98%;
@@ -466,4 +466,30 @@ ins.adsbygoogle {
   ins.adsbygoogle[data-ad-format="horizontal"] {
     min-height: 60px;
   }
+}
+
+/* Better text visibility for accessibility */
+.text-muted {
+  color: hsl(var(--muted-foreground));
+}
+
+.text-muted-foreground {
+  color: hsl(var(--muted-foreground));
+}
+
+.text-secondary {
+  color: hsl(var(--secondary-foreground));
+}
+
+.text-secondary-foreground {
+  color: hsl(var(--secondary-foreground));
+}
+
+/* Ensure all text is readable in both modes */
+.prose {
+  color: hsl(var(--foreground));
+}
+
+.prose strong {
+  color: hsl(var(--foreground));
 }
