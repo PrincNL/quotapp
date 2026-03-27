@@ -5,7 +5,7 @@ import { RecentlyUsed, FavoriteTools, ToolStats } from "@/components/tool-activi
 import { BadgeDisplay } from "@/components/badge-display";
 import { ToolCombos } from "@/components/tool-combos";
 import { NewsletterSignup } from "@/components/newsletter-signup";
-import { InlineAd, TopBannerAd, StickyAd, AnchorAd } from "@/components/ad-components";
+import { InlineAd, TopBannerAd, StickyAd, AnchorAd, ResponsiveAd, InArticleAd } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import { JsonLd } from "@/components/json-ld";
@@ -196,8 +196,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Top Banner Ad - Above fold */}
-      <TopBannerAd slot="homepage-top-1" />
+      {/* TOP AD - Above fold, largest and most valuable */}
+      <div className="w-full bg-muted/30 py-4">
+        <div className="container mx-auto px-4">
+          <div className="max-w-[970px] mx-auto">
+            <TopBannerAd slot="homepage-top-leaderboard" />
+          </div>
+        </div>
+      </div>
 
       {/* Main Content with Sidebar Ad for Desktop */}
       <div className="container mx-auto px-4 py-12">
@@ -207,6 +213,9 @@ export default function Home() {
             {/* Quote of the Day */}
             <QuoteOfTheDay />
 
+            {/* Ad after quote */}
+            <InArticleAd slot="homepage-after-quote" />
+
             {/* Tool Activity */}
             <RecentlyUsed />
             <FavoriteTools />
@@ -215,8 +224,10 @@ export default function Home() {
             {/* Badges */}
             <BadgeDisplay />
 
-            {/* Inline Ad */}
-            <InlineAd slot="homepage-inline-1" />
+            {/* FIRST IN-CONTENT AD - High visibility */}
+            <div className="my-8">
+              <InlineAd slot="homepage-inline-1" />
+            </div>
 
             {/* Tools Grid */}
             <div className="mb-12">
@@ -272,11 +283,16 @@ export default function Home() {
               </div>
             </div>
 
+            {/* SECOND IN-CONTENT AD - After tools */}
+            <InlineAd slot="homepage-inline-2" />
+
             {/* Tool Combos */}
             <ToolCombos />
 
-            {/* Inline Ad */}
-            <InlineAd slot="homepage-inline-2" />
+            {/* THIRD IN-CONTENT AD - After tool combos */}
+            <div className="my-8">
+              <ResponsiveAd slots={{ mobile: "homepage-rectangle-mobile", desktop: "homepage-rectangle-desktop" }} />
+            </div>
 
             {/* Newsletter */}
             <NewsletterSignup />
@@ -372,6 +388,9 @@ export default function Home() {
               </div>
             </div>
 
+            {/* FOURTH IN-CONTENT AD - After SEO content */}
+            <InlineAd slot="homepage-inline-3" />
+
             {/* Related Tools Section */}
             <div className="max-w-4xl mx-auto">
               <RelatedTools limit={6} />
@@ -383,20 +402,24 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Desktop Sidebar Ad */}
+          {/* Desktop Sidebar Ads - Multiple for more impressions */}
           <aside className="hidden lg:block w-[300px] flex-shrink-0">
-            <StickyAd slot="homepage-sidebar-1" />
+            <div className="sticky top-24 space-y-4">
+              <StickyAd slot="homepage-sidebar-1" />
+              <div className="h-4" />
+              <StickyAd slot="homepage-sidebar-2" />
+            </div>
           </aside>
         </div>
       </div>
 
-      {/* Bottom Ad */}
-      <section className="container mx-auto px-4 pb-12">
+      {/* FIFTH AD - Before footer */}
+      <section className="container mx-auto px-4 pb-8">
         <InlineAd slot="homepage-bottom-1" />
       </section>
 
-      {/* Mobile Anchor Ad */}
-      <AnchorAd slot="homepage-mobile-anchor-1" />
+      {/* Mobile Anchor Ad - Always visible on mobile */}
+      <AnchorAd slot="homepage-mobile-anchor" />
     </div>
   );
 }
