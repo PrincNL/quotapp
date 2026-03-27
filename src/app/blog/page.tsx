@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight, BookOpen } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
-import { InlineAd } from "@/components/ad-components";
+import { InlineAd, AD_SLOTS } from "@/components/ad-components";
 
 const blogPosts = [
   {
@@ -135,7 +135,7 @@ export default function BlogPage() {
       </div>
 
       {/* Inline Ad */}
-      <InlineAd slot="blog-top-1" />
+      <InlineAd slot={AD_SLOTS.homepageInline} />
 
       {/* Blog Posts Grid */}
       <div className="grid md:grid-cols-2 gap-6 mb-12">
@@ -183,7 +183,7 @@ export default function BlogPage() {
       </div>
 
       {/* Inline Ad */}
-      <InlineAd slot="blog-bottom-1" />
+      <InlineAd slot={AD_SLOTS.homepageInline} />
 
       {/* SEO Content */}
       <div className="max-w-3xl mx-auto mt-16">

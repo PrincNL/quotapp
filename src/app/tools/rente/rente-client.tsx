@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Percent, RotateCcw, ArrowRight, Info } from "lucide-react";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ShareResult } from "@/components/share-result";
-import { InlineAd, StickyAd } from "@/components/ad-components";
+import { InlineAd, StickyAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import Link from "next/link";
 
@@ -365,7 +365,7 @@ export function RenteCalculatorClient() {
           </motion.div>
 
           {/* Ad */}
-          <InlineAd slot="rente-after-result" />
+          <InlineAd slot={AD_SLOTS.toolInline} />
 
           {/* SEO Content */}
           <div className="mt-12 card">
@@ -418,7 +418,7 @@ export function RenteCalculatorClient() {
         </div>
 
         {/* Sidebar */}
-        <StickyAd slot="rente-sidebar" />
+        <StickyAd slot={AD_SLOTS.toolInline} />
       </div>
     </div>
   );

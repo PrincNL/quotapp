@@ -7,7 +7,7 @@ import { useRecentTools } from "@/hooks/use-tool-storage";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ShareResult } from "@/components/share-result";
 import { FeedbackForm } from "@/components/feedback-form";
-import { StickyAd, InlineAd } from "@/components/ad-components";
+import { StickyAd, InlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import Link from "next/link";
@@ -353,7 +353,7 @@ export function BTWCalculatorClient() {
           </motion.div>
 
           {/* Ad after result */}
-          <InlineAd slot="btw-after-result" />
+          <InlineAd slot={AD_SLOTS.toolInline} />
 
           {/* SEO Content Section - Uitgebreid */}
           <motion.div 
@@ -505,7 +505,7 @@ export function BTWCalculatorClient() {
           </motion.div>
 
           {/* Ad before FAQ */}
-          <InlineAd slot="btw-before-faq" />
+          <InlineAd slot={AD_SLOTS.toolInline} />
 
           {/* FAQ Section */}
           <FAQSection items={btwFAQ} title="Veelgestelde vragen over BTW berekenen" />
@@ -520,7 +520,7 @@ export function BTWCalculatorClient() {
         </div>
 
         {/* Sticky Ad Sidebar */}
-        <StickyAd slot="btw-sidebar-1" />
+        <StickyAd slot={AD_SLOTS.toolSidebar} />
       </div>
     </div>
   );
