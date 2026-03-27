@@ -5,6 +5,33 @@ import { InlineAd } from "@/components/ad-components";
 
 const blogPosts = [
   {
+    slug: "hypotheek-berekenen-2026",
+    title: "Hypotheek Berekenen 2026: Alles Wat Je Moet Weten",
+    excerpt: "Complete gids over hypotheken in 2026. Leer hoe je je maximale hypotheek berekent, wat je maandlasten worden, en alles over NHG en annuïteitenhypotheek.",
+    date: "2026-03-27",
+    readTime: "12 min",
+    category: "Hypotheek",
+    keywords: ["hypotheek berekenen", "maximale hypotheek", "maandlasten hypotheek", "NHG 2026"],
+  },
+  {
+    slug: "lening-berekenen-2026-complete-gids",
+    title: "Lening Berekenen 2026: Complete Gids",
+    excerpt: "Alles over leningen berekenen in 2026. Persoonlijke lening, autofinanciering, kredietrente - leer wat je maandlasten worden.",
+    date: "2026-03-27",
+    readTime: "10 min",
+    category: "Leningen",
+    keywords: ["lening berekenen", "persoonlijke lening", "maandlasten lening", "kredietrente"],
+  },
+  {
+    slug: "sparen-rente-op-rente-2026",
+    title: "Sparen en Rente-op-Rente: De Kracht van Samengestelde Rente",
+    excerpt: "Ontdek het machtige effect van rente-op-rente. Hoe langer je spaart, hoe sneller je vermogen groeit - de ultieme gids voor slim sparen.",
+    date: "2026-03-27",
+    readTime: "9 min",
+    category: "Sparen",
+    keywords: ["sparen berekenen", "rente op rente", "spaarrente", "samengestelde rente"],
+  },
+  {
     slug: "btw-berekenen-2025-complete-gids",
     title: "BTW Berekenen in 2025: De Complete Gids voor Ondernemers",
     excerpt: "Leer alles over btw berekenen in Nederland. Van 21% tot 9% btw-tarief, inclusief naar exclusief en handige rekentips voor ondernemers.",
