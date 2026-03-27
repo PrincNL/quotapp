@@ -2,12 +2,14 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { Calculator, Euro, Calendar, ArrowRight, RotateCcw, Info } from "lucide-react";
 import { FavoriteButton } from "@/components/favorite-button";
 import { ShareResult } from "@/components/share-result";
 import { InlineAd, StickyAd, ToolTopBannerAd, BottomAd, SmartInlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
-import Link from "next/link";
+import { RelatedTools } from "@/components/related-tools";
+import { NextStepModule } from "@/components/next-step-module";
 
 interface Resultaat {
   maandlasten: number;
@@ -101,6 +103,10 @@ export function LeningCalculatorClient() {
     ? `Leenbedrag: €${bedrag} | Rente: ${rente}% | Maandlasten: €${formatBedrag(resultaat.maandlasten)} | Totaal: €${formatBedrag(resultaat.totaalBedrag)}`
     : "";
 
+  const leningNextStepTitle = resultaat
+    ? `Je maandlast zit rond € ${formatBedrag(resultaat.maandlasten)}. Vergelijk nu de slimste leenroute.`
+    : "Vergelijk niet alleen het maandbedrag, maar ook de totale kosten van lenen.";
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       {/* TOP BANNER AD - New placement for tool pages */}
@@ -125,8 +131,26 @@ export function LeningCalculatorClient() {
               Lening Calculator
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Bereken eenvoudig je maandelijkse leninglasten. 
+              Bereken eenvoudig je maandelijkse leninglasten.
               Vergelijk leningen en kies de beste optie voor jouw situatie.
+            </p>
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                href="/tools/jkp-berekening"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                Controleer het echte JKP
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/tools/auto-lening"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+              >
+                Bereken een autolening
+              </Link>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Slim voor het vergelijken van offertes zodra je maandlasten in beeld zijn.
             </p>
           </motion.div>
 
@@ -298,6 +322,46 @@ export function LeningCalculatorClient() {
             </div>
           </motion.div>
 
+          <NextStepModule
+            context="lening"
+            theme="blue"
+            title={leningNextStepTitle}
+            description="Een lage maandlast zegt niet alles. Controleer ook het JKP, de totale rente en of een andere leenstructuur beter past bij je doel en budget."
+            primary={{
+              label: "Vergelijk krediet en JKP",
+              href: "/tools/krediet",
+            }}
+            secondary={{
+              label: "Bekijk autolening scenario",
+              href: "/tools/auto-lening",
+            }}
+            trustPoints={[
+              "Zie direct je maandlast, totale rente en totaalbedrag",
+              "Gebruik eerst een berekening, vergelijk daarna pas aanbieders",
+              "Geschikt voor persoonlijke lening, auto of verbouwing",
+            ]}
+            comparisons={[
+              {
+                label: "JKP berekenen",
+                href: "/tools/jkp-berekening",
+                badge: "Kosten",
+                description: "Vergelijk de echte kosten van verschillende leenvoorstellen in één oogopslag.",
+              },
+              {
+                label: "Rente impact check",
+                href: "/tools/rente",
+                badge: "Scenario",
+                description: "Zie hoeveel een hogere of lagere rente doet met je totale lasten.",
+              },
+              {
+                label: "Budget & draagkracht",
+                href: "/tools/zorgplicht-calculator",
+                badge: "Veiligheid",
+                description: "Check of je maandlasten nog passen binnen je totale financiële ruimte.",
+              },
+            ]}
+          />
+
           {/* Ad after result - lazy loaded */}
           <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
 
@@ -323,28 +387,7 @@ export function LeningCalculatorClient() {
           {/* FAQ */}
           <FAQSection items={leningFAQ} title="Veelgestelde vragen over leningen" />
 
-          {/* Related Tools */}
-          <div className="mt-8">
-            <h3 className="text-lg font-bold mb-4">Gerelateerde Tools</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Link href="/tools/hypotheek" className="card hover:border-primary/50 transition-colors text-center">
-                <Calculator className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Hypotheek</p>
-              </Link>
-              <Link href="/tools/rente" className="card hover:border-primary/50 transition-colors text-center">
-                <Calculator className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Rente</p>
-              </Link>
-              <Link href="/tools/sparen" className="card hover:border-primary/50 transition-colors text-center">
-                <Calculator className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Sparen</p>
-              </Link>
-              <Link href="/tools/procent" className="card hover:border-primary/50 transition-colors text-center">
-                <Calculator className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Procent</p>
-              </Link>
-            </div>
-          </div>
+          <RelatedTools currentTool="Lening Calculator" />
 
           {/* BOTTOM AD - New for tool pages */}
           <BottomAd slot={AD_SLOTS.toolBottom} />
