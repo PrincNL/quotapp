@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield, PiggyBank, Euro } from "lucide-react";
+import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield, PiggyBank, Euro, Car, Heart, Sun, Receipt } from "lucide-react";
 import { QuoteOfTheDay } from "@/components/quote-of-the-day";
 import { RecentlyUsed, FavoriteTools, ToolStats } from "@/components/tool-activity";
 import { BadgeDisplay } from "@/components/badge-display";
@@ -34,15 +34,56 @@ const tools = [
     keywords: ["lening berekenen", "lening calculator", "maandlasten lening"],
   },
   {
+    name: "Auto Lening Calculator",
+    shortName: "Auto Lening",
+    description: "Financier je auto met gunstige maandlasten",
+    href: "/tools/auto-lening",
+    icon: Car,
+    color: "from-blue-600 to-indigo-700",
+    bgColor: "bg-blue-600",
+    popular: true,
+    keywords: ["auto lening", "autofinanciering", "auto kopen"],
+  },
+  {
     name: "Sparen Calculator",
     shortName: "Sparen",
     description: "Bereken je spaarrendement met rente-op-rente",
     href: "/tools/sparen",
     icon: PiggyBank,
-    color: "from-blue-600 to-indigo-700",
-    bgColor: "bg-blue-600",
+    color: "from-blue-500 to-blue-600",
+    bgColor: "bg-blue-500",
     popular: true,
     keywords: ["sparen berekenen", "spaarrente", "rente op rente"],
+  },
+  {
+    name: "Alimentatie Calculator",
+    shortName: "Alimentatie",
+    description: "Bereken partner- en kinderalimentatie",
+    href: "/tools/alimentatie",
+    icon: Heart,
+    color: "from-pink-500 to-rose-600",
+    bgColor: "bg-pink-500",
+    keywords: ["alimentatie berekenen", "partneralimentatie", "echtscheiding"],
+  },
+  {
+    name: "Aftrekposten Calculator",
+    shortName: "Aftrekposten",
+    description: "Bereken je belasting aftrekposten",
+    href: "/tools/aftrekposten",
+    icon: Receipt,
+    color: "from-emerald-500 to-teal-600",
+    bgColor: "bg-emerald-500",
+    keywords: ["aftrekposten", "belasting aftrekken", "inkomstenbelasting"],
+  },
+  {
+    name: "Verlof Calculator",
+    shortName: "Verlof",
+    description: "Bereken je vakantiedagen en uitbetaling",
+    href: "/tools/verlof",
+    icon: Sun,
+    color: "from-yellow-500 to-orange-600",
+    bgColor: "bg-yellow-500",
+    keywords: ["vakantiedagen", "verlof berekenen", "uitbetaald verlof"],
   },
   {
     name: "BTW Calculator",
@@ -50,8 +91,8 @@ const tools = [
     description: "Bereken 21%, 9% of 0% BTW eenvoudig",
     href: "/tools/btw",
     icon: Calculator,
-    color: "from-blue-500 to-blue-600",
-    bgColor: "bg-blue-500",
+    color: "from-blue-400 to-blue-500",
+    bgColor: "bg-blue-400",
     popular: true,
     keywords: ["btw berekenen", "21 btw", "9 btw"],
   },
@@ -212,7 +253,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-6 text-sm">
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary">
                 <Calculator className="w-4 h-4" />
-                <span>11 Tools</span>
+                <span>15 Tools</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
                 <TrendingUp className="w-4 h-4" />
@@ -264,7 +305,7 @@ export default function Home() {
             <div className="mb-12">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-2xl font-bold">Alle Rekentools</h2>
-                <span className="text-sm text-muted-foreground">11 tools beschikbaar</span>
+                <span className="text-sm text-muted-foreground">15 tools beschikbaar</span>
               </div>
               <p className="text-muted-foreground mb-6 max-w-2xl">
                 Kies uit onze collectie van 11 gratis online rekentools. 
