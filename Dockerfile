@@ -19,8 +19,10 @@ ENV PORT=3000
 
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-# COPY --from=builder /app/public ./public  # No public folder
+COPY --from=builder /app/.next/static ./projects/quotapp/.next/static
+COPY --from=builder /app/public ./projects/quotapp/public
+
+WORKDIR /app/projects/quotapp
 
 EXPOSE 3000
 
