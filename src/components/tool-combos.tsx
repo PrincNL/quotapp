@@ -56,14 +56,11 @@ export function ToolCombos() {
         {toolCombos.map((combo) => (
           <div
             key={combo.title}
-            className="group relative overflow-hidden rounded-xl bg-gradient-to-br p-[1px]"
-            style={{
-              backgroundImage: `linear-gradient(135deg, var(--tw-gradient-stops))`,
-            }}
+            className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${combo.color} p-[1px] shadow-sm transition-transform duration-300 hover:-translate-y-1`}
           >
-            <div className="absolute inset-0 bg-gradient-to-br opacity-20 group-hover:opacity-30 transition-opacity" />
-            <div className="relative h-full bg-card rounded-xl p-4">
-              <div className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${combo.color} text-white mb-3`}>
+            <div className="absolute inset-0 opacity-20 blur-2xl transition-opacity group-hover:opacity-30" />
+            <div className="relative h-full rounded-[calc(var(--radius-xl)-1px)] bg-card p-5">
+              <div className={`inline-flex p-2 rounded-lg bg-gradient-to-br ${combo.color} text-white mb-3 shadow-lg`}>
                 <combo.icon className="w-4 h-4" />
               </div>
               

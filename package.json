@@ -1,7 +1,7 @@
 {
   "name": "quotapp",
   "version": "1.0.0",
-  "description": "Discover and share inspiring quotes",
+  "description": "Nederlandse verzameling gratis online rekentools voor geld, wonen en dagelijkse berekeningen",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -16,6 +16,7 @@
     "seed": "node prisma/seed.js"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.4.0",
     "@prisma/client": "6.19.2",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",

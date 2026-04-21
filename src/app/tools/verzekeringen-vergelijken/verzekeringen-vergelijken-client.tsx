@@ -2,12 +2,13 @@
 
 import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Car, Heart, Home, Euro, RotateCcw, BookOpen, CheckCircle, AlertCircle, TrendingDown, PiggyBank } from "lucide-react";
+import { Shield, Car, Heart, Home, Euro, BookOpen, CheckCircle, AlertCircle, TrendingDown, PiggyBank } from "lucide-react";
 import { InlineAd, StickyAd, ToolTopBannerAd, BottomAd, SmartInlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import { FeedbackForm } from "@/components/feedback-form";
 import { FavoriteButton } from "@/components/favorite-button";
+import { NextStepModule } from "@/components/next-step-module";
 
 interface Verzekering {
   id: string;
@@ -72,14 +73,13 @@ export function VerzekeringenVergelijkenClient() {
     eigenRisico: "0",
   });
 
-  const [brutoInkomen, setBrutoInkomen] = useState("50000");
-  const [toonAdvies, setToonAdvies] = useState(true);
+  const brutoInkomen = 50000;
 
   const resultaat = useMemo((): Resultaat => {
     const totaleMaandKosten = verzekeringen.reduce((sum, v) => sum + v.maandPremie, 0);
     const totaleJaarKosten = totaleMaandKosten * 12;
 
-    const inkomensPercentage = (totaleJaarKosten / parseFloat(brutoInkomen)) * 100;
+    const inkomensPercentage = (totaleJaarKosten / brutoInkomen) * 100;
 
     // Aanbevolen verzekeringen
     const heeftZorg = verzekeringen.some(v => v.type === "zorg");
@@ -167,10 +167,10 @@ export function VerzekeringenVergelijkenClient() {
     return value.toLocaleString("nl-NL", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
   };
 
-  const reset = () => {
-    setVerzekeringen([]);
-    setBrutoInkomen("50000");
-  };
+  const verzekeringenNextStepTitle =
+    resultaat.besparingMogelijk > 0
+      ? `Je hebt potentieel circa € ${formatBedrag(resultaat.besparingMogelijk)} per jaar aan optimalisatie.`
+      : "Loop je verzekeringen jaarlijks na en zet ze naast je totale budget.";
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
@@ -366,6 +366,46 @@ export function VerzekeringenVergelijkenClient() {
               </div>
             </motion.div>
           )}
+
+          <NextStepModule
+            context="verzekeringen"
+            theme="indigo"
+            title={verzekeringenNextStepTitle}
+            description="Gebruik deze inventarisatie als startpunt: check daarna of je premies passen binnen je budget, of je genoeg buffer hebt voor eigen risico en waar je vaste lasten verder omlaag kunnen."
+            primary={{
+              label: "Zet premies naast je budget",
+              href: "/tools/persoonlijke-financiën",
+            }}
+            secondary={{
+              label: "Bereken je buffer",
+              href: "/tools/buffer-calculator",
+            }}
+            trustPoints={[
+              "Jaarlijkse review voorkomt onnodig hoge premies",
+              "Let op verplichte én aanbevolen verzekeringen",
+              "Gebruik dit als inventarisatie en controleer voorwaarden bij je aanbieder",
+            ]}
+            comparisons={[
+              {
+                label: "Zorgplicht check",
+                href: "/tools/zorgplicht-calculator",
+                badge: "Draagkracht",
+                description: "Controleer of je totale vaste lasten en schulden nog gezond blijven.",
+              },
+              {
+                label: "Buffer voor eigen risico",
+                href: "/tools/sparen",
+                badge: "Reserve",
+                description: "Bereken hoe snel je een reserve opbouwt voor eigen risico en onverwachte kosten.",
+              },
+              {
+                label: "Vaste lasten overzicht",
+                href: "/tools/energiekosten",
+                badge: "Besparen",
+                description: "Bekijk ook waar je buiten verzekeringen nog op maandlasten kunt besparen.",
+              },
+            ]}
+          />
 
           <SmartInlineAd slot={AD_SLOTS.toolInline} afterContent={true} />
 

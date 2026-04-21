@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Calendar, Clock, ArrowLeft, User } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, User } from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { InlineAd, InArticleAd } from "@/components/ad-components";
 import { RelatedTools } from "@/components/related-tools";
@@ -808,6 +808,187 @@ Onthoud: het maximale bedrag is niet altijd het verstandige bedrag. Kijk naar je
 totale financiële situatie en houd een buffer aan voor onverwachte gebeurtenissen.
     `,
   },
+
+  "hypotheek-berekenen-2026": {
+    title: "Hypotheek Berekenen 2026: Alles Wat Je Moet Weten",
+    excerpt: "Complete gids over hypotheken in 2026. Leer hoe je je maximale hypotheek berekent, wat je maandlasten worden en alles over NHG en annuïteitenhypotheek.",
+    date: "2026-03-27",
+    readTime: "12 min",
+    category: "Hypotheek",
+    author: "QuotApp.nl",
+    keywords: ["hypotheek berekenen", "maximale hypotheek", "maandlasten hypotheek", "NHG 2026"],
+    content: `
+## Wat is een Hypotheek?
+
+Een hypotheek is een lening voor de aankoop van onroerend goed, waarbij de woning als onderpand dient. In Nederland zijn er meerdere hypotheekvormen, elk met eigen kenmerken, maandlasten en fiscale gevolgen.
+
+## Soorten Hypotheken in Nederland
+
+### Annuïteitenhypotheek
+Bij een annuïteitenhypotheek betaal je elke maand een vast bedrag dat bestaat uit rente en aflossing. Aan het begin betaal je relatief veel rente en aan het einde vooral aflossing.
+
+### Lineaire Hypotheek
+Bij een lineaire hypotheek los je elke maand een vast bedrag af. Daardoor daalt je restschuld sneller en worden je maandlasten in de loop van de tijd lager.
+
+### Aflossingsvrije Hypotheek
+Bij een aflossingsvrije hypotheek betaal je alleen rente. Je lost niet tussentijds af, waardoor de maandlasten lager zijn, maar de schuld blijft staan.
+
+## Hoe Bereken Je Je Maximale Hypotheek?
+
+Je maximale hypotheek hangt onder meer af van:
+- Je bruto jaarinkomen
+- Het inkomen van je partner
+- Lopende leningen en andere vaste lasten
+- De rentevaste periode
+- De marktwaarde van de woning
+
+Gebruik voor een snelle indicatie onze [Hypotheek Calculator](/tools/hypotheek) en vergelijk daarna ook je maandlasten met de [Hypotheek Maandlasten Calculator](/tools/hypotheek-maandlasten).
+
+## Hypotheekrente in 2026
+
+De actuele hypotheekrente verschilt per aanbieder en rentevaste periode. Let daarom niet alleen op de laagste rente, maar ook op voorwaarden zoals boetevrij aflossen, meeneemregelingen en de mogelijkheid om extra af te lossen.
+
+## Bijkomende Kosten
+
+Naast de woningprijs krijg je vaak te maken met extra kosten, zoals:
+- Taxatiekosten
+- Notariskosten
+- Advies- en bemiddelingskosten
+- Kosten voor NHG
+- Eventuele verbouwingskosten
+
+## Praktische Tips voor Starters
+
+1. Bouw eerst een financiële buffer op.
+2. Houd rekening met extra kosten koper.
+3. Vergelijk meerdere aanbieders en adviseurs.
+4. Kijk niet alleen naar maximaal lenen, maar vooral naar comfortabel wonen.
+5. Controleer of NHG in jouw situatie voordeel oplevert.
+
+## Veelgestelde Vragen
+
+### Hoeveel kan ik lenen in 2026?
+Dat hangt af van je inkomen, schulden, rente en woningwaarde. Een online berekening is een goede eerste stap, maar een adviseur kan je exacte mogelijkheden bepalen.
+
+### Wat is beter: annuïtair of lineair?
+Dat hangt af van je voorkeur. Een annuïteitenhypotheek geeft stabielere maandlasten, terwijl een lineaire hypotheek over de hele looptijd vaak goedkoper is.
+
+## Conclusie
+
+Een hypotheek berekenen is meer dan alleen een maximum bedrag opzoeken. Kijk naar betaalbaarheid, risico en flexibiliteit. Begin met onze [Hypotheek Calculator](/tools/hypotheek), verdiep je daarna in je opties en laat je goed adviseren.
+    `,
+  },
+  "lening-berekenen-2026-complete-gids": {
+    title: "Lening Berekenen 2026: Complete Gids",
+    excerpt: "Alles over leningen berekenen in 2026. Persoonlijke lening, autofinanciering en kredietrente: leer wat je maandlasten worden.",
+    date: "2026-03-27",
+    readTime: "10 min",
+    category: "Leningen",
+    author: "QuotApp.nl",
+    keywords: ["lening berekenen", "persoonlijke lening", "maandlasten lening", "kredietrente"],
+    content: `
+## Wat is een Lening?
+
+Een lening is een bedrag dat je leent van een kredietverstrekker en later terugbetaalt met rente. Er zijn verschillende leenproducten, elk met een eigen looptijd, rente en risico.
+
+## Soorten Leningen in Nederland
+
+### Persoonlijke Lening
+Een persoonlijke lening heeft meestal een vaste rente en vaste looptijd. Daardoor weet je vooraf precies wat je maandlasten zijn.
+
+### Doorlopend Krediet
+Bij een doorlopend krediet kun je flexibel opnemen tot een afgesproken limiet. Dat klinkt handig, maar het maakt het vaak lastiger om snel schulden af te lossen.
+
+### Autofinanciering
+Voor een auto kun je kiezen voor speciale financiering. Vergelijk altijd de totale kosten met onze [Auto Lening Calculator](/tools/auto-lening) en de standaard [Lening Calculator](/tools/lening).
+
+## Hoe Bereken Je Maandlasten?
+
+Bij het berekenen van je lening kijk je naar:
+- Het leenbedrag
+- De rente
+- De looptijd
+- Eventuele extra kosten of verzekeringen
+
+Een langere looptijd verlaagt meestal je maandlasten, maar verhoogt vaak de totale kosten van de lening.
+
+## Waar Moet Je Op Letten?
+
+1. Vergelijk niet alleen rente, maar vooral het JKP.
+2. Controleer of je boetevrij extra kunt aflossen.
+3. Kijk of er verplichte verzekeringen zijn gekoppeld.
+4. Leen alleen voor een doel dat past bij je financiële situatie.
+5. Houd ruimte over in je maandbudget.
+
+## Slimmer Lenen
+
+Wil je inzicht in wat verantwoord is? Combineer dan deze gids met onze [Persoonlijke Financiën Tool](/tools/persoonlijke-financiën) en [Buffer Calculator](/tools/buffer-calculator) om te zien of je genoeg financiële ruimte hebt.
+
+## Veelgestelde Vragen
+
+### Hoeveel kan ik lenen?
+Dat hangt af van je inkomen, woonlasten, andere schulden en kredietverleden. Een rekentool geeft snel een indicatie, maar aanbieders doen altijd een eigen toetsing.
+
+### Is eerder aflossen slim?
+Vaak wel, omdat je totale rentekosten dalen. Controleer wel eerst of daar voorwaarden of kosten aan verbonden zijn.
+
+## Conclusie
+
+Een lening moet overzicht geven, geen stress veroorzaken. Bereken vooraf je maandlasten, vergelijk aanbieders kritisch en leen alleen wat past binnen je budget.
+    `,
+  },
+  "sparen-rente-op-rente-2026": {
+    title: "Sparen en Rente-op-Rente: De Kracht van Samengestelde Rente",
+    excerpt: "Ontdek het effect van rente-op-rente en hoe je spaargeld in 2026 sneller groeit met slim sparen en de juiste spaarrente.",
+    date: "2026-03-27",
+    readTime: "9 min",
+    category: "Sparen",
+    author: "QuotApp.nl",
+    keywords: ["sparen berekenen", "rente op rente", "spaarrente", "samengestelde rente"],
+    content: `
+## Wat is Rente-op-Rente?
+
+Rente-op-rente betekent dat je rente ontvangt over je spaargeld én over de eerder opgebouwde rente. Daardoor groeit je vermogen steeds sneller naarmate je langer spaart.
+
+## Waarom is dit zo krachtig?
+
+Het effect zit in tijd en consistentie. Hoe eerder je begint, hoe groter het verschil op lange termijn. Zelfs kleine maandelijkse bedragen kunnen flink groeien.
+
+## Voorbeeld van Samengestelde Rente
+
+Start je met €10.000 tegen 3% rente per jaar, dan groeit dit zonder extra inleg in 20 jaar naar ongeveer €18.061. Het grootste verschil ontstaat in de latere jaren doordat je rente op rente ontvangt.
+
+## Praktische Tips voor Sparen in 2026
+
+### 1. Start vroeg
+Wie eerder begint, geeft samengestelde rente meer tijd om zijn werk te doen.
+
+### 2. Spaar automatisch
+Met een automatische overboeking bouw je discipline op zonder er steeds over na te denken.
+
+### 3. Vergelijk spaarrentes
+Gebruik onze [Spaarrente Vergelijker](/tools/spaarrente-vergelijker) om te zien welke bank of spaarvorm het beste past.
+
+### 4. Bereken je groeipad
+Met de [Sparen Calculator](/tools/sparen) en [Rente Calculator](/tools/rente) zie je direct wat extra inleg of een hogere rente doet voor je eindbedrag.
+
+## Eerst sparen of eerst aflossen?
+
+Dat hangt af van de rente op je schulden en je noodbuffer. Heb je dure schulden, dan is extra aflossen vaak slimmer. Heb je nog geen buffer, bouw die eerst op.
+
+## Veelgestelde Vragen
+
+### Hoeveel buffer heb ik nodig?
+Meestal is 3 tot 6 maanden vaste lasten een goed uitgangspunt.
+
+### Is sparen nog zinvol bij inflatie?
+Ja, want een buffer voorkomt dat je moet lenen bij onverwachte kosten. Voor lange termijn doelen kun je daarnaast andere vormen van vermogensopbouw overwegen.
+
+## Conclusie
+
+Rente-op-rente is een van de sterkste financiële principes voor spaarders. Begin vroeg, spaar consistent en gebruik de juiste tools om je voortgang inzichtelijk te maken.
+    `,
+  },
 };
 
 export function generateStaticParams() {
@@ -840,6 +1021,20 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
       publishedTime: post.date,
       authors: [post.author],
       tags: post.keywords,
+      images: [
+        {
+          url: "/og-image.svg",
+          width: 1200,
+          height: 630,
+          alt: `${post.title} | QuotApp.nl`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: ["/og-image.svg"],
     },
   };
 }
@@ -850,6 +1045,11 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   if (!post) {
     notFound();
   }
+
+  const relatedPosts = Object.entries(blogPosts)
+    .filter(([slug, candidate]) => slug !== params.slug && candidate.category === post.category)
+    .slice(0, 3)
+    .map(([slug, candidate]) => ({ slug, ...candidate }));
 
   // Article schema
   const articleSchema = {
@@ -1032,6 +1232,43 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           />
         </div>
       </div>
+
+      {relatedPosts.length > 0 ? (
+        <section className="mt-12 pt-8 border-t border-border">
+          <div className="flex items-center justify-between gap-4 mb-6">
+            <div>
+              <h2 className="text-2xl font-bold">Meer artikelen over {post.category.toLowerCase()}</h2>
+              <p className="text-sm text-muted-foreground mt-1">
+                Verdiep je verder met gerelateerde uitleg en praktische rekentips.
+              </p>
+            </div>
+            <Link href="/blog" className="text-sm font-medium text-primary hover:underline">
+              Bekijk alle artikelen
+            </Link>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {relatedPosts.map((relatedPost) => (
+              <Link
+                key={relatedPost.slug}
+                href={`/blog/${relatedPost.slug}`}
+                className="group rounded-xl border border-border bg-card p-5 hover:border-primary/40 hover:shadow-sm transition-all"
+              >
+                <p className="text-xs font-medium text-primary mb-2">{relatedPost.category}</p>
+                <h3 className="font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                  {relatedPost.title}
+                </h3>
+                <p className="text-sm text-muted-foreground mt-2 line-clamp-3">
+                  {relatedPost.excerpt}
+                </p>
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-primary mt-4">
+                  Lees artikel
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* Related Tools */}
       <div className="mt-12">

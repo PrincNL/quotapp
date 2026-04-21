@@ -24,7 +24,7 @@ export function HowToSchema({ name, description, steps, toolUrl }: HowToSchemaPr
     description: description,
     image: {
       "@type": "ImageObject",
-      "url": "https://quotapp.nl/og-image.jpg",
+      "url": "https://quotapp.nl/og-image.svg",
       "width": 1200,
       "height": 630,
     },

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { TrendingUp, PiggyBank, ArrowRight, RotateCcw, Info, Calendar } from "lucide-react";
@@ -7,7 +8,8 @@ import { FavoriteButton } from "@/components/favorite-button";
 import { ShareResult } from "@/components/share-result";
 import { InlineAd, StickyAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
-import Link from "next/link";
+import { RelatedTools } from "@/components/related-tools";
+import { NextStepModule } from "@/components/next-step-module";
 
 interface Resultaat {
   totaalBedrag: number;
@@ -31,7 +33,7 @@ const sparenFAQ = [
   },
   {
     question: "Is sparen nog wel de moeite waard?",
-    answer: "Hoewel inflatie spaargeld kan uithollen, blijft sparen belangrijk voor een financieelBuffer. Richt op een combinatie: een deel inleg voor korte termijn doelen, en beleggen voor lange termijn. Raadpleeg een financieel adviseur voor persoonlijk advies.",
+    answer: "Hoewel inflatie spaargeld kan uithollen, blijft sparen belangrijk voor een financiële buffer. Richt op een combinatie: een deel spaargeld voor korte termijn doelen, en beleggen voor lange termijn. Raadpleeg een financieel adviseur voor persoonlijk advies.",
   },
   {
     question: "Wat is het verschil tussen vrij opneembaar en deposito?",
@@ -53,11 +55,11 @@ export function SparenCalculatorClient() {
 
   const bereken = useCallback(() => {
     const start = parseFloat(startBedrag.replace(",", ".")) || 0;
-    const maand = parseFloat(maandInleg.replace(",", ".")) || 0;
+    const maandelijkseInleg = parseFloat(maandInleg.replace(",", ".")) || 0;
     const renteJaar = (parseFloat(rente) || 0) / 100;
     const looptijd = parseInt(jaren) || 0;
 
-    if (start < 0 || maand < 0 || looptijd <= 0) {
+    if (start < 0 || maandelijkseInleg < 0 || looptijd <= 0) {
       setResultaat(null);
       return;
     }
@@ -71,10 +73,10 @@ export function SparenCalculatorClient() {
     let totaleRente = 0;
 
     for (let jaar = 1; jaar <= looptijd; jaar++) {
-      for (let maand = 0; maand < 12; maand++) {
+      for (let maandIndex = 0; maandIndex < 12; maandIndex++) {
         const maandRente = huidigBedrag * rentePerMaand;
         totaleRente += maandRente;
-        huidigBedrag += maandRente + maand;
+        huidigBedrag += maandRente + maandelijkseInleg;
       }
       rentePerJaar.push(Math.round(totaleRente * 100) / 100);
       bedragPerJaar.push(Math.round(huidigBedrag * 100) / 100);
@@ -111,6 +113,14 @@ export function SparenCalculatorClient() {
     ? `Start: €${startBedrag} + €${maandInleg}/maand @ ${rente}% = €${formatBedrag(resultaat.totaalBedrag)} na ${jaren} jaar (€${formatBedrag(resultaat.totaleRente)} rente)`
     : "";
 
+  const totaalIngelegd =
+    (parseFloat(startBedrag.replace(",", ".")) || 0) +
+    (parseFloat(maandInleg.replace(",", ".")) || 0) * 12 * (parseInt(jaren) || 0);
+
+  const sparenNextStepTitle = resultaat
+    ? `Je spaargeld groeit naar € ${formatBedrag(resultaat.totaalBedrag)}. Dit zijn logische vervolgstappen.`
+    : "Bepaal niet alleen hoeveel je spaart, maar ook welke rekening en welk spaardoel daarbij past.";
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       <div className="grid lg:grid-cols-[1fr,300px] gap-8">
@@ -132,8 +142,26 @@ export function SparenCalculatorClient() {
               Sparen Calculator
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Bereken hoeveel spaargeld je opbouwt met rente-op-rente effect. 
-              Ontdek de kracht van samengestelde rente!
+              Bereken hoeveel spaargeld je opbouwt met rente-op-rente effect.
+              Ontdek de kracht van samengestelde rente.
+            </p>
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                href="/tools/spaarrente-vergelijker"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                Vergelijk actuele spaarrentes
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/tools/spaardoel-calculator"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+              >
+                Werk naar een spaardoel
+              </Link>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Gebruik deze vervolgstappen om je rendement te vergelijken of een concreet spaardoel uit te werken.
             </p>
           </motion.div>
 
@@ -300,7 +328,7 @@ export function SparenCalculatorClient() {
                       <div className="flex justify-between p-3 bg-muted rounded-lg">
                         <span className="text-muted-foreground">Totaal ingelegd</span>
                         <span className="font-medium">
-                          € {formatBedrag(parseFloat(startBedrag) + parseFloat(maandInleg) * 12 * parseInt(jaren))}
+                          € {formatBedrag(totaalIngelegd)}
                         </span>
                       </div>
                       <div className="flex justify-between p-3 bg-green-500/10 rounded-lg">
@@ -310,7 +338,7 @@ export function SparenCalculatorClient() {
                       <div className="flex justify-between p-3 bg-muted rounded-lg">
                         <span className="text-muted-foreground">Rente % van inleg</span>
                         <span className="font-medium">
-                          {Math.round((resultaat.totaleRente / (parseFloat(startBedrag) + parseFloat(maandInleg) * 12 * parseInt(jaren))) * 100)}%
+                          {totaalIngelegd > 0 ? Math.round((resultaat.totaleRente / totaalIngelegd) * 100) : 0}%
                         </span>
                       </div>
                     </div>
@@ -345,6 +373,46 @@ export function SparenCalculatorClient() {
             </div>
           </motion.div>
 
+          <NextStepModule
+            context="sparen"
+            theme="purple"
+            title={sparenNextStepTitle}
+            description="Sparen werkt het best als je rekent met doel, rente én koopkracht. Check daarom ook welke rekening, buffer en tijdslijn het best aansluiten op jouw plan."
+            primary={{
+              label: "Vergelijk spaarrentes",
+              href: "/tools/spaarrente-vergelijker",
+            }}
+            secondary={{
+              label: "Maak een spaardoelplan",
+              href: "/tools/spaardoel-calculator",
+            }}
+            trustPoints={[
+              "Rente-op-rente met startbedrag en maandelijkse inleg",
+              "Handig voor buffer, vakantie, huis of lange termijn",
+              "Controleer ook inflatie en actuele spaarrente",
+            ]}
+            comparisons={[
+              {
+                label: "Buffer calculator",
+                href: "/tools/buffer-calculator",
+                badge: "Veiligheid",
+                description: "Bekijk hoeveel noodbuffer je idealiter achter de hand wilt hebben.",
+              },
+              {
+                label: "Spaarrekening vergelijken",
+                href: "/tools/spaarrekening",
+                badge: "Rekening",
+                description: "Zet verschillende spaarrentes en eindbedragen naast elkaar.",
+              },
+              {
+                label: "Inflatie check",
+                href: "/tools/inflatie-calculator",
+                badge: "Koopkracht",
+                description: "Zie wat inflatie met je spaardoel en echte opbrengst doet.",
+              },
+            ]}
+          />
+
           {/* Ad */}
           <InlineAd slot={AD_SLOTS.toolInline} />
 
@@ -372,32 +440,11 @@ export function SparenCalculatorClient() {
           {/* FAQ */}
           <FAQSection items={sparenFAQ} title="Veelgestelde vragen over sparen" />
 
-          {/* Related Tools */}
-          <div className="mt-8">
-            <h3 className="text-lg font-bold mb-4">Gerelateerde Tools</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Link href="/tools/rente" className="card hover:border-primary/50 transition-colors text-center">
-                <TrendingUp className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Rente Calculator</p>
-              </Link>
-              <Link href="/tools/lening" className="card hover:border-primary/50 transition-colors text-center">
-                <TrendingUp className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Lening Calculator</p>
-              </Link>
-              <Link href="/tools/hypotheek" className="card hover:border-primary/50 transition-colors text-center">
-                <TrendingUp className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Hypotheek</p>
-              </Link>
-              <Link href="/tools/procent" className="card hover:border-primary/50 transition-colors text-center">
-                <TrendingUp className="w-6 h-6 mx-auto mb-2 text-primary" />
-                <p className="text-sm font-medium">Procent</p>
-              </Link>
-            </div>
-          </div>
+          <RelatedTools currentTool="Sparen Calculator" />
         </div>
 
         {/* Sidebar */}
-        <StickyAd slot={AD_SLOTS.toolInline} />
+        <StickyAd slot={AD_SLOTS.toolSidebar} />
       </div>
     </div>
   );

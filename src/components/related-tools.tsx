@@ -1,5 +1,21 @@
 import Link from "next/link";
-import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Banknote,
+  Calculator,
+  CreditCard,
+  Hash,
+  Home,
+  Percent,
+  PiggyBank,
+  Scale,
+  Shield,
+  TrendingUp,
+  Type,
+  Calendar,
+  Wallet,
+  Target,
+} from "lucide-react";
 
 interface Tool {
   name: string;
@@ -11,6 +27,23 @@ interface Tool {
 const tools: Tool[] = [
   { name: "BTW Calculator", href: "/tools/btw", icon: Calculator, description: "Bereken 21%, 9% of 0% BTW" },
   { name: "Hypotheek Calculator", href: "/tools/hypotheek", icon: Banknote, description: "Maximale hypotheek berekenen" },
+  { name: "Hypotheek Maandlasten", href: "/tools/hypotheek-maandlasten", icon: Home, description: "Exacte maandlasten inclusief rente" },
+  { name: "Hypotheek Vergelijker", href: "/tools/hypotheek-vergelijker", icon: Home, description: "Vergelijk hypotheekopties en scenario's" },
+  { name: "Huur vs Kopen", href: "/tools/huur-vs-koop", icon: Home, description: "Vergelijk kopen met blijven huren" },
+  { name: "Extra Aflossing", href: "/tools/extra-aflossing", icon: Home, description: "Zie wat extra aflossen oplevert" },
+  { name: "Lening Calculator", href: "/tools/lening", icon: CreditCard, description: "Persoonlijke lening en maandlasten" },
+  { name: "Krediet Calculator", href: "/tools/krediet", icon: CreditCard, description: "Bereken kredietlimiet en kosten" },
+  { name: "Auto Lening Calculator", href: "/tools/auto-lening", icon: CreditCard, description: "Bereken autolening en maandbedrag" },
+  { name: "JKP Berekening", href: "/tools/jkp-berekening", icon: Percent, description: "Vergelijk de echte kosten van lenen" },
+  { name: "Sparen Calculator", href: "/tools/sparen", icon: PiggyBank, description: "Bereken rente-op-rente en spaargroei" },
+  { name: "Spaardoel Calculator", href: "/tools/spaardoel-calculator", icon: Target, description: "Maak een plan voor je spaardoel" },
+  { name: "Spaarrente Vergelijker", href: "/tools/spaarrente-vergelijker", icon: TrendingUp, description: "Vergelijk actuele spaarrentes" },
+  { name: "Buffer Calculator", href: "/tools/buffer-calculator", icon: Wallet, description: "Bereken je ideale financiële buffer" },
+  { name: "Inflatie Calculator", href: "/tools/inflatie-calculator", icon: TrendingUp, description: "Zie wat inflatie met je geld doet" },
+  { name: "Verzekeringen Vergelijken", href: "/tools/verzekeringen-vergelijken", icon: Shield, description: "Zorg, auto en inboedel vergelijken" },
+  { name: "Persoonlijke Financiën", href: "/tools/persoonlijke-financiën", icon: Wallet, description: "Overzicht van inkomsten en uitgaven" },
+  { name: "Zorgplicht Calculator", href: "/tools/zorgplicht-calculator", icon: Shield, description: "Check of je financiële lasten te hoog zijn" },
+  { name: "Rente Calculator", href: "/tools/rente", icon: TrendingUp, description: "Bereken rente-op-rente of aflossing" },
   { name: "Procent Calculator", href: "/tools/procent", icon: Percent, description: "Alle percentage berekeningen" },
   { name: "IBAN Checker", href: "/tools/iban", icon: Hash, description: "Controleer IBAN nummers" },
   { name: "Tekst Tools", href: "/tools/tekst", icon: Type, description: "Woorden en karakters tellen" },
@@ -19,6 +52,35 @@ const tools: Tool[] = [
   { name: "BMI Calculator", href: "/tools/bmi", icon: Scale, description: "Body Mass Index berekenen" },
 ];
 
+const toolMap = new Map(tools.map((tool) => [tool.name, tool]));
+
+const relatedToolGroups: Record<string, string[]> = {
+  "Hypotheek Calculator": [
+    "Hypotheek Maandlasten",
+    "Hypotheek Vergelijker",
+    "Huur vs Kopen",
+    "Extra Aflossing",
+  ],
+  "Lening Calculator": [
+    "Krediet Calculator",
+    "JKP Berekening",
+    "Auto Lening Calculator",
+    "Rente Calculator",
+  ],
+  "Sparen Calculator": [
+    "Spaardoel Calculator",
+    "Spaarrente Vergelijker",
+    "Buffer Calculator",
+    "Inflatie Calculator",
+  ],
+  "Verzekeringen Vergelijken": [
+    "Persoonlijke Financiën",
+    "Buffer Calculator",
+    "Zorgplicht Calculator",
+    "Sparen Calculator",
+  ],
+};
+
 interface RelatedToolsProps {
   currentTool?: string;
   limit?: number;
@@ -26,9 +88,14 @@ interface RelatedToolsProps {
 }
 
 export function RelatedTools({ currentTool, limit = 4, className = "" }: RelatedToolsProps) {
-  const relatedTools = tools
-    .filter((tool) => tool.name !== currentTool)
-    .slice(0, limit);
+  const mappedTools = currentTool
+    ? (relatedToolGroups[currentTool] || [])
+        .map((toolName) => toolMap.get(toolName))
+        .filter((tool): tool is Tool => Boolean(tool))
+    : [];
+
+  const fallbackTools = tools.filter((tool) => tool.name !== currentTool);
+  const relatedTools = (mappedTools.length > 0 ? mappedTools : fallbackTools).slice(0, limit);
 
   return (
     <section className={`py-8 ${className}`}>

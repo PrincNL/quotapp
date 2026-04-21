@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="80" viewBox="0 0 240 80" role="img" aria-labelledby="title desc">
+  <title id="title">QuotApp.nl logo</title>
+  <desc id="desc">Logo van QuotApp.nl met een Q-icoon en woordmerk.</desc>
+  <defs>
+    <linearGradient id="brand" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="80" rx="20" fill="#ffffff"/>
+  <circle cx="44" cy="40" r="28" fill="url(#brand)"/>
+  <text x="44" y="50" font-family="Arial Black, Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff" text-anchor="middle">Q</text>
+  <text x="86" y="37" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">QuotApp</text>
+  <text x="86" y="57" font-family="Inter, Arial, sans-serif" font-size="14" fill="#475569">Gratis online rekentools</text>
+</svg>

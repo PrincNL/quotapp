@@ -7,7 +7,7 @@ const blogPosts = [
   {
     slug: "hypotheek-berekenen-2026",
     title: "Hypotheek Berekenen 2026: Alles Wat Je Moet Weten",
-    excerpt: "Complete gids over hypotheken in 2026. Leer hoe je je maximale hypotheek berekent, wat je maandlasten worden, en alles over NHG en annuïteitenhypotheek.",
+    excerpt: "Complete gids over hypotheken in 2026. Leer hoe je je maximale hypotheek berekent, wat je maandlasten worden en alles over NHG en annuïteitenhypotheek.",
     date: "2026-03-27",
     readTime: "12 min",
     category: "Hypotheek",
@@ -16,7 +16,7 @@ const blogPosts = [
   {
     slug: "lening-berekenen-2026-complete-gids",
     title: "Lening Berekenen 2026: Complete Gids",
-    excerpt: "Alles over leningen berekenen in 2026. Persoonlijke lening, autofinanciering, kredietrente - leer wat je maandlasten worden.",
+    excerpt: "Alles over leningen berekenen in 2026. Persoonlijke lening, autofinanciering en kredietrente: leer wat je maandlasten worden.",
     date: "2026-03-27",
     readTime: "10 min",
     category: "Leningen",
@@ -25,7 +25,7 @@ const blogPosts = [
   {
     slug: "sparen-rente-op-rente-2026",
     title: "Sparen en Rente-op-Rente: De Kracht van Samengestelde Rente",
-    excerpt: "Ontdek het machtige effect van rente-op-rente. Hoe langer je spaart, hoe sneller je vermogen groeit - de ultieme gids voor slim sparen.",
+    excerpt: "Ontdek het effect van rente-op-rente en hoe je spaargeld in 2026 sneller groeit met slim sparen en de juiste spaarrente.",
     date: "2026-03-27",
     readTime: "9 min",
     category: "Sparen",
@@ -52,7 +52,7 @@ const blogPosts = [
   {
     slug: "procenten-berekenen-complete-gids",
     title: "Procenten Berekenen: De Complete Gids met Voorbeelden",
-    excerpt: "Leer alle manieren om procenten te berekenen. Van percentage van een bedrag tot stijging/daling berekenen - met praktische voorbeelden.",
+    excerpt: "Leer alle manieren om procenten te berekenen. Van percentage van een bedrag tot stijging of daling berekenen, met praktische voorbeelden.",
     date: "2025-01-05",
     readTime: "7 min",
     category: "Rekenen",
@@ -61,7 +61,7 @@ const blogPosts = [
   {
     slug: "iban-nummer-controleren",
     title: "IBAN Nummer Controleren: Hoe Werkt het en Waarom is het Belangrijk?",
-    excerpt: "Ontdek hoe IBAN-validatie werkt, waarom het belangrijk is om IBAN-nummers te checken, en hoe je zelf een Nederlands IBAN kunt verifiëren.",
+    excerpt: "Ontdek hoe IBAN-validatie werkt, waarom het belangrijk is om IBAN-nummers te checken en hoe je zelf een Nederlands IBAN kunt verifiëren.",
     date: "2024-12-28",
     readTime: "6 min",
     category: "Bankieren",
@@ -121,7 +121,7 @@ export const metadata = {
     description: "Handige artikelen over btw berekenen, hypotheek berekenen, procenten en meer. Tips en uitleg voor onze gratis rekentools.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.svg",
         width: 1200,
         height: 630,
         alt: "QuotApp.nl Blog - Financiële artikelen",
@@ -132,7 +132,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "QuotApp.nl Blog - Artikelen over Rekenen en Financiën",
     description: "Handige artikelen over btw berekenen, hypotheek berekenen, procenten en meer.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.svg"],
   },
 };
 
@@ -241,20 +241,49 @@ export default function BlogPage() {
       <InlineAd slot={AD_SLOTS.homepageInline} />
 
       {/* SEO Content */}
-      <div className="max-w-3xl mx-auto mt-16">
-        <h2 className="text-2xl font-bold mb-4">Over onze blog</h2>
-        <div className="prose prose-sm text-muted-foreground">
-          <p className="mb-4">
-            Welkom op de QuotApp.nl blog! Hier delen we regelmatig nuttige artikelen over rekenen, 
-            financiën en het gebruik van onze online tools. Of je nu ondernemer bent en wilt weten 
-            hoe je btw correct berekent, of starter op de woningmarkt die zijn maximale hypotheek 
-            wil weten - wij helpen je op weg.
-          </p>
-          <p>
-            Onze artikelen zijn geschreven om je praktisch te helpen. We vermijden ingewikkeld jargon 
-            en focussen op heldere uitleg met concrete voorbeelden. Heb je een onderwerp waar je meer 
-            over wilt weten? Laat het ons weten!
-          </p>
+      <div className="max-w-3xl mx-auto mt-16 space-y-10">
+        <div>
+          <h2 className="text-2xl font-bold mb-4">Over onze blog</h2>
+          <div className="prose prose-sm text-muted-foreground">
+            <p className="mb-4">
+              Welkom op de QuotApp.nl blog! Hier delen we regelmatig nuttige artikelen over rekenen,
+              financiën en het gebruik van onze online tools. Of je nu ondernemer bent en wilt weten
+              hoe je btw correct berekent, of starter op de woningmarkt die zijn maximale hypotheek
+              wil weten: wij helpen je op weg.
+            </p>
+            <p>
+              Onze artikelen zijn geschreven om je praktisch te helpen. We vermijden ingewikkeld jargon
+              en focussen op heldere uitleg met concrete voorbeelden. Heb je een onderwerp waar je meer
+              over wilt weten? Laat het ons weten!
+            </p>
+          </div>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl border border-border bg-card p-5">
+            <h3 className="font-semibold mb-2">Populaire rekentools</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/tools/hypotheek" className="hover:text-primary">Hypotheek calculator</Link></li>
+              <li><Link href="/tools/lening" className="hover:text-primary">Lening calculator</Link></li>
+              <li><Link href="/tools/btw" className="hover:text-primary">BTW calculator</Link></li>
+            </ul>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-5">
+            <h3 className="font-semibold mb-2">Handig voor sparen</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/tools/sparen" className="hover:text-primary">Sparen calculator</Link></li>
+              <li><Link href="/tools/rente" className="hover:text-primary">Rente calculator</Link></li>
+              <li><Link href="/tools/spaarrente-vergelijker" className="hover:text-primary">Spaarrente vergelijker</Link></li>
+            </ul>
+          </div>
+          <div className="rounded-xl border border-border bg-card p-5">
+            <h3 className="font-semibold mb-2">Meer financiële hulp</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><Link href="/tools/procent" className="hover:text-primary">Procent calculator</Link></li>
+              <li><Link href="/tools/iban" className="hover:text-primary">IBAN checker</Link></li>
+              <li><Link href="/tools/aftrekposten" className="hover:text-primary">Aftrekposten calculator</Link></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

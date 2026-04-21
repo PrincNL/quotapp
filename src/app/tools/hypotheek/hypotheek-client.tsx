@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Euro, TrendingUp, Users, RotateCcw, BookOpen, Lightbulb, Info } from "lucide-react";
+import { Home, Euro, TrendingUp, Users, RotateCcw, BookOpen, Lightbulb, Info, ArrowRight } from "lucide-react";
 import { InlineAd, StickyAd, ToolTopBannerAd, BottomAd, SmartInlineAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import { FeedbackForm } from "@/components/feedback-form";
 import { FavoriteButton } from "@/components/favorite-button";
+import { NextStepModule } from "@/components/next-step-module";
 
 interface Resultaat {
   maxHypotheek: number;
@@ -116,6 +118,10 @@ export function HypotheekCalculatorClient() {
     return value.toLocaleString("nl-NL");
   };
 
+  const hypotheekNextStepTitle = resultaat
+    ? `Je indicatie staat rond € ${formatBedrag(resultaat.maxHypotheek)}. Dit zijn de slimste vervolgstappen.`
+    : "Start met je hypotheekcheck en werk daarna je woonscenario uit.";
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
       {/* TOP BANNER AD - New placement for tool pages */}
@@ -140,8 +146,26 @@ export function HypotheekCalculatorClient() {
               Hypotheek Calculator
             </h1>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Bereken je maximale hypotheek en maandlasten op basis van je inkomen. 
+              Bereken je maximale hypotheek en maandlasten op basis van je inkomen.
               Inclusief rente en looptijd voor een realistische indicatie.
+            </p>
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link
+                href="/tools/hypotheek-maandlasten"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                Bereken nauwkeurige maandlasten
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </Link>
+              <Link
+                href="/tools/hypotheek-vergelijker"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background px-5 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+              >
+                Vergelijk hypotheekvormen
+              </Link>
+            </div>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Handig als volgende stap nadat je een eerste indicatie van je leencapaciteit hebt.
             </p>
           </motion.div>
 
@@ -313,6 +337,46 @@ export function HypotheekCalculatorClient() {
               </AnimatePresence>
             </motion.div>
           </motion.div>
+
+          <NextStepModule
+            context="hypotheek"
+            theme="green"
+            title={hypotheekNextStepTitle}
+            description="Gebruik je eerste indicatie als vertrekpunt: check daarna je echte maandlasten, vergelijk hypotheekroutes en bekijk of kopen beter uitpakt dan huren in jouw situatie."
+            primary={{
+              label: "Bereken je exacte maandlasten",
+              href: "/tools/hypotheek-maandlasten",
+            }}
+            secondary={{
+              label: "Vergelijk huren of kopen",
+              href: "/tools/huur-vs-koop",
+            }}
+            trustPoints={[
+              "Snelle indicatie op basis van inkomen, rente en looptijd",
+              "Handig voor starters, doorstromers en samenkopers",
+              "Gratis, zonder account en direct toepasbaar",
+            ]}
+            comparisons={[
+              {
+                label: "Hypotheek vergelijken",
+                href: "/tools/hypotheek-vergelijker",
+                badge: "Vergelijk",
+                description: "Zet meerdere hypotheekopties naast elkaar voordat je verder rekent.",
+              },
+              {
+                label: "Annuïteit vs lineair",
+                href: "/tools/annuiteitenhypotheek",
+                badge: "Vorm",
+                description: "Bekijk welke hypotheekvorm beter past bij je maandbudget en lange termijn.",
+              },
+              {
+                label: "Extra aflossing check",
+                href: "/tools/extra-aflossing",
+                badge: "Strategie",
+                description: "Zie hoeveel sneller je kunt aflossen en hoeveel rente dat kan schelen.",
+              },
+            ]}
+          />
 
           {/* Ad after result */}
           <InlineAd slot="hypotheek-after-result" />

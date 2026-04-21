@@ -72,6 +72,7 @@ export function SocialProof() {
   return (
     <section className="py-12 border-t border-b border-border/50 bg-muted/30" aria-labelledby="social-proof-heading">
       <div className="container mx-auto px-4 max-w-6xl">
+        <div className="section-shell p-6 md:p-8">
         <h2 id="social-proof-heading" className="text-2xl font-bold text-center mb-8">
           Vertrouwd door duizenden Nederlanders
         </h2>
@@ -94,7 +95,7 @@ export function SocialProof() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-card border border-border rounded-xl p-6"
+              className="card rounded-xl"
               itemProp="review"
               itemScope
               itemType="https://schema.org/Review"
@@ -129,6 +130,7 @@ export function SocialProof() {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

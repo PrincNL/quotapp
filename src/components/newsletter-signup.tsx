@@ -2,29 +2,46 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Send, Check, X } from "lucide-react";
+import { Mail, Send, Check } from "lucide-react";
+import { trackEvent } from "@/lib/analytics-client";
 
 export function NewsletterSignup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
+  const persistLocalFallback = (value: string) => {
+    const subscribers = JSON.parse(localStorage.getItem("quotapp_newsletter") || "[]");
+    subscribers.push({ email: value, date: new Date().toISOString(), source: "local-fallback" });
+    localStorage.setItem("quotapp_newsletter", JSON.stringify(subscribers));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) return;
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!normalizedEmail || !normalizedEmail.includes("@")) return;
 
     setStatus("loading");
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
-    // Store in localStorage for demo
-    const subscribers = JSON.parse(localStorage.getItem("quotapp_newsletter") || "[]");
-    subscribers.push({ email, date: new Date().toISOString() });
-    localStorage.setItem("quotapp_newsletter", JSON.stringify(subscribers));
-    
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: normalizedEmail, source: "homepage_newsletter", website: "" }),
+      });
+
+      if (!response.ok) {
+        throw new Error("newsletter_request_failed");
+      }
+
+      await trackEvent("newsletter_signup_success", { placement: "homepage" });
+    } catch {
+      persistLocalFallback(normalizedEmail);
+      await trackEvent("newsletter_signup_fallback", { placement: "homepage" });
+    }
+
     setStatus("success");
     setEmail("");
-    
+
     setTimeout(() => setStatus("idle"), 3000);
   };
 

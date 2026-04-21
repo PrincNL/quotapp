@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, ThumbsUp, ThumbsDown, Send, Check, X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics-client";
 
 interface FeedbackFormProps {
   toolName: string;
@@ -14,22 +15,45 @@ export function FeedbackForm({ toolName }: FeedbackFormProps) {
   const [feedback, setFeedback] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    // Store in localStorage for demo
+  const persistLocalFallback = () => {
     const feedbacks = JSON.parse(localStorage.getItem("quotapp_feedback") || "[]");
     feedbacks.push({
       tool: toolName,
       rating,
       feedback,
       date: new Date().toISOString(),
+      source: "local-fallback",
     });
     localStorage.setItem("quotapp_feedback", JSON.stringify(feedbacks));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!rating) return;
+
+    setStatus("loading");
+
+    try {
+      const response = await fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tool: toolName,
+          rating,
+          feedback,
+          website: "",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("feedback_request_failed");
+      }
+
+      await trackEvent("tool_feedback_submit", { tool: toolName, rating });
+    } catch {
+      persistLocalFallback();
+      await trackEvent("tool_feedback_fallback", { tool: toolName, rating });
+    }
 
     setStatus("success");
     setTimeout(() => {

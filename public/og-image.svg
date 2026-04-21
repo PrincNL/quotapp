@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">QuotApp.nl Open Graph afbeelding</title>
+  <desc id="desc">Social share afbeelding voor QuotApp.nl met branding en rekentool-boodschap.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" rx="36"/>
+  <circle cx="170" cy="170" r="92" fill="#ffffff" fill-opacity="0.12"/>
+  <circle cx="980" cy="500" r="120" fill="#ffffff" fill-opacity="0.08"/>
+  <g>
+    <circle cx="180" cy="168" r="74" fill="#ffffff" fill-opacity="0.18"/>
+    <circle cx="180" cy="168" r="58" fill="#ffffff"/>
+    <text x="180" y="188" font-family="Arial Black, Arial, sans-serif" font-size="70" font-weight="700" fill="#2563eb" text-anchor="middle">Q</text>
+  </g>
+  <text x="300" y="180" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="700" fill="#ffffff">QuotApp.nl</text>
+  <text x="300" y="255" font-family="Inter, Arial, sans-serif" font-size="34" fill="#dbeafe">Gratis online rekentools voor Nederland</text>
+  <text x="120" y="390" font-family="Inter, Arial, sans-serif" font-size="52" font-weight="700" fill="#ffffff">BTW, hypotheek, procenten, sparen en meer</text>
+  <text x="120" y="458" font-family="Inter, Arial, sans-serif" font-size="28" fill="#e2e8f0">Snelle calculators, heldere uitleg en praktische financiële tools op één plek.</text>
+  <rect x="120" y="500" width="360" height="68" rx="18" fill="#ffffff"/>
+  <text x="300" y="544" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#1d4ed8" text-anchor="middle">quotapp.nl</text>
+</svg>
