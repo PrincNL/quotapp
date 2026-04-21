@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield, PiggyBank, Euro, Car, Heart, Sun, Receipt } from "lucide-react";
+import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, CheckCircle, Star, Zap, Shield, PiggyBank, Euro, Car, Heart, Sun, Receipt, Sparkles, Grid3X3, Clock3, Search } from "lucide-react";
 import { QuoteOfTheDay } from "@/components/quote-of-the-day";
 import { RecentlyUsed, FavoriteTools, ToolStats } from "@/components/tool-activity";
 import { BadgeDisplay } from "@/components/badge-display";
@@ -10,6 +10,7 @@ import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import { JsonLd } from "@/components/json-ld";
 import { SocialProof, testimonialsSchema, aggregateRatingSchema } from "@/components/social-proof";
+import { TOTAL_TOOL_COUNT } from "@/lib/site-stats";
 
 const tools = [
   {
@@ -169,6 +170,8 @@ const tools = [
   },
 ];
 
+const FEATURED_TOOL_COUNT = tools.length;
+
 const homepageFAQ = [
   {
     question: "Zijn alle rekentools op QuotApp.nl gratis?",
@@ -223,7 +226,7 @@ const webpageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: "QuotApp.nl - Gratis Online Rekentools voor Nederland",
-  description: "Gratis Nederlandse rekentools: BTW, hypotheek, procenten, IBAN, valuta, BMI en meer. 15 tools, 100% gratis, geen registratie.",
+  description: `Gratis Nederlandse rekentools: BTW, hypotheek, procenten, IBAN, valuta, BMI en meer. ${TOTAL_TOOL_COUNT} tools, 100% gratis, geen registratie.`,
   url: "https://quotapp.nl",
   isPartOf: {
     "@type": "WebSite",
@@ -236,14 +239,14 @@ const webpageSchema = {
     url: "https://quotapp.nl",
     logo: {
       "@type": "ImageObject",
-      url: "https://quotapp.nl/logo.png",
+      url: "https://quotapp.nl/logo.svg",
     },
   },
   breadcrumb: breadcrumbSchema,
   mainEntity: {
     "@type": "ItemList",
     name: "Gratis Rekentools",
-    description: "Lijst van alle gratis online rekentools op QuotApp.nl",
+    description: `Overzicht van ${TOTAL_TOOL_COUNT} gratis online rekentools op QuotApp.nl`,
     itemListElement: tools.map((tool, index) => ({
       "@type": "ListItem",
       position: index + 1,
@@ -258,8 +261,8 @@ const webpageSchema = {
 const collectionPageSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  name: "Alle Rekentools - QuotApp.nl",
-  description: "Bekijk alle 15 gratis online rekentools voor Nederland. Van BTW berekenen tot hypotheek calculaties.",
+  name: "Populaire Rekentools - QuotApp.nl",
+  description: `Bekijk ${FEATURED_TOOL_COUNT} populaire tools op de homepage en ga verder naar alle ${TOTAL_TOOL_COUNT} calculators.`,
   url: "https://quotapp.nl/#tools",
   isPartOf: webpageSchema,
   about: {
@@ -280,48 +283,96 @@ export default function Home() {
       <JsonLd data={aggregateRatingSchema} />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background pt-16 pb-12">
-        {/* Background decoration */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background pt-10 pb-12 md:pt-14 md:pb-16">
+        <div className="absolute inset-0 overflow-hidden soft-grid opacity-40" />
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl" />
           <div className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-purple-500/5 rounded-full blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="flex flex-wrap justify-center gap-3 mb-6">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-                <Zap className="w-4 h-4" /> Snel & Eenvoudig
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-medium">
-                <Star className="w-4 h-4" /> 100% Gratis
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-sm font-medium">
-                <Shield className="w-4 h-4" /> Geen registratie
-              </span>
-            </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text">
-              Gratis Online Rekentools voor Nederland
-            </h1>
-            <p className="text-xl text-muted-foreground mb-8">
-              Handige Nederlandse rekentools voor dagelijks gebruik. 
-              BTW berekenen, hypotheek berekenen, procenten en meer. 
-              Snel, accuraat en helemaal gratis!
-            </p>
-            
-            <div className="flex flex-wrap justify-center gap-6 text-sm">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary">
-                <Calculator className="w-4 h-4" />
-                <span>15 Tools</span>
+          <div className="section-shell max-w-6xl mx-auto overflow-hidden p-6 md:p-8 lg:p-10">
+            <div className="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+              <div>
+                <div className="flex flex-wrap gap-3 mb-6">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
+                    <Zap className="w-4 h-4" /> Snel & Eenvoudig
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-medium">
+                    <Star className="w-4 h-4" /> 100% Gratis
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary text-sm font-medium">
+                    <Shield className="w-4 h-4" /> Geen registratie
+                  </span>
+                </div>
+
+                <h1 className="text-4xl md:text-6xl font-bold mb-5 gradient-text leading-tight">
+                  Gratis online rekentools die direct duidelijk zijn
+                </h1>
+                <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+                  Handige Nederlandse calculators voor BTW, hypotheek, sparen, procenten en tientallen andere berekeningen.
+                  Snel, mobielvriendelijk en zonder gedoe.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 sm:items-center mb-8">
+                  <Link
+                    href="/tools"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3.5 text-base font-semibold text-primary-foreground shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                  >
+                    <Grid3X3 className="w-5 h-5" />
+                    Bekijk alle tools
+                  </Link>
+                  <Link
+                    href="#tools"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background/80 px-5 py-3.5 text-base font-semibold text-foreground transition-colors hover:bg-secondary"
+                  >
+                    <Sparkles className="w-5 h-5 text-primary" />
+                    Start met populaire tools
+                  </Link>
+                </div>
+
+                <div className="flex flex-wrap gap-3 text-sm">
+                  <div className="cta-chip">
+                    <Calculator className="w-4 h-4 text-primary" />
+                    <span>{TOTAL_TOOL_COUNT} tools</span>
+                  </div>
+                  <div className="cta-chip">
+                    <Clock3 className="w-4 h-4 text-primary" />
+                    <span>Resultaat in seconden</span>
+                  </div>
+                  <div className="cta-chip">
+                    <Search className="w-4 h-4 text-primary" />
+                    <span>Makkelijk te vinden en te gebruiken</span>
+                  </div>
+                </div>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
-                <TrendingUp className="w-4 h-4" />
-                <span>100% Gratis</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary">
-                <ArrowRight className="w-4 h-4" />
-                <span>Geen registratie</span>
+
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+                <div className="card-glass rounded-2xl p-5 lg:p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-2xl bg-primary/10 p-3 text-primary">
+                      <TrendingUp className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-primary mb-1">Snel starten</p>
+                      <h2 className="text-xl font-bold mb-2">De populairste tools staan meteen klaar</h2>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Open direct calculators voor BTW, hypotheek, sparen, lening en meer zonder eerst te zoeken.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-2">
+                  <div className="card rounded-2xl p-5">
+                    <p className="text-3xl font-bold text-foreground">{TOTAL_TOOL_COUNT}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Nederlandse calculators verdeeld over meerdere categorieën</p>
+                  </div>
+                  <div className="card rounded-2xl p-5">
+                    <p className="text-3xl font-bold text-foreground">0</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Accounts nodig — gewoon openen en rekenen</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -365,25 +416,26 @@ export default function Home() {
             </div>
 
             {/* Tools Grid */}
-            <div className="mb-12" id="tools">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold">Alle Rekentools</h2>
-                <span className="text-sm text-muted-foreground">15 tools beschikbaar</span>
+            <div className="mb-12 section-shell p-6 md:p-8" id="tools">
+              <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-6">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80 mb-2">Populaire startpunten</p>
+                  <h2 className="text-2xl md:text-3xl font-bold">Begin met de tools die het vaakst gebruikt worden</h2>
+                </div>
+                <span className="text-sm text-muted-foreground">{TOTAL_TOOL_COUNT} tools beschikbaar</span>
               </div>
-              <p className="text-muted-foreground mb-6 max-w-2xl">
-                Kies uit onze collectie van 15 gratis online rekentools. 
-                Van <Link href="/tools/btw" className="text-primary hover:underline">BTW berekenen</Link> tot 
-                je <Link href="/tools/hypotheek" className="text-primary hover:underline">maximale hypotheek berekenen</Link> - 
-                alles werkt direct in je browser.
+              <p className="text-muted-foreground mb-8 max-w-2xl leading-relaxed">
+                Kies uit onze collectie gratis online rekentools. Van <Link href="/tools/btw" className="text-primary hover:underline">BTW berekenen</Link> tot
+                je <Link href="/tools/hypotheek" className="text-primary hover:underline"> maximale hypotheek berekenen</Link> — alles werkt direct in je browser.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
                 {tools.map((tool) => (
                   <Link
                     key={tool.name}
                     href={tool.href}
                     className="group"
                   >
-                    <article className="tool-card card h-full p-0 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <article className="tool-card card h-full p-0 overflow-hidden text-card-foreground hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                       {/* Gradient header */}
                       <div className={`h-2 bg-gradient-to-r ${tool.color}`} />
                       
@@ -430,7 +482,9 @@ export default function Home() {
             </div>
 
             {/* Newsletter */}
-            <NewsletterSignup />
+            <div className="section-shell p-1">
+              <NewsletterSignup />
+            </div>
 
             {/* SEO Content Section - Rich content for Google indexing */}
             <div className="mt-16 max-w-4xl mx-auto" id="about">
@@ -447,21 +501,21 @@ export default function Home() {
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-6 my-10 not-prose">
-                  <div className="p-6 bg-muted rounded-xl text-center">
+                  <div className="card text-center">
                     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-6 h-6 text-primary" aria-hidden="true" />
                     </div>
                     <h3 className="font-semibold text-foreground mb-2">Snel & Eenvoudig</h3>
                     <p className="text-sm">Geen registratie nodig. Geen apps installeren. Direct aan de slag in je browser.</p>
                   </div>
-                  <div className="p-6 bg-muted rounded-xl text-center">
+                  <div className="card text-center">
                     <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-6 h-6 text-green-500" aria-hidden="true" />
                     </div>
                     <h3 className="font-semibold text-foreground mb-2">100% Privé</h3>
                     <p className="text-sm">Alle berekeningen gebeuren lokaal in je browser. Je gegevens blijven bij jou.</p>
                   </div>
-                  <div className="p-6 bg-muted rounded-xl text-center">
+                  <div className="card text-center">
                     <div className="w-12 h-12 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-6 h-6 text-purple-500" aria-hidden="true" />
                     </div>

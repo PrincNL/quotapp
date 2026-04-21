@@ -1,9 +1,20 @@
 import Link from "next/link";
-import { Calculator, Percent, Hash, Type, Calendar, Scale, Banknote, TrendingUp, ArrowRight, BookOpen, DollarSign, PiggyBank, Car, Heart, Sun, Receipt, TrendingDown, CreditCard, Home, Wallet, Timer, Ruler, Fuel, Coins, Target, Shield, AlertTriangle, Zap, Baby } from "lucide-react";
+import {
+  ArrowRight,
+  Banknote,
+  Calculator,
+  Coins,
+  CreditCard,
+  Fuel,
+  Home,
+  PiggyBank,
+  Receipt,
+  TrendingDown,
+  Wallet,
+} from "lucide-react";
 import { JsonLd } from "@/components/json-ld";
 import { InlineAd, TopBannerAd, AD_SLOTS } from "@/components/ad-components";
 
-// All 48 tools organized by category
 const toolsByCategory = [
   {
     category: "Hypotheek & Wonen",
@@ -116,15 +127,45 @@ const toolsByCategory = [
   },
 ];
 
-// Flatten all tools for structured data
-const allTools = toolsByCategory.flatMap((cat) => cat.tools);
+const allTools = toolsByCategory.flatMap((category) => category.tools);
+const toolCount = allTools.length;
 
-// Tools collection schema
+const quickStartTools = [
+  {
+    name: "Hypotheek berekenen",
+    href: "/tools/hypotheek",
+    description: "Start met maximale hypotheek en maandlasten.",
+    icon: Banknote,
+    accent: "from-green-500 to-emerald-600",
+  },
+  {
+    name: "Lening vergelijken",
+    href: "/tools/lening",
+    description: "Controleer direct je maandlasten en totale kosten.",
+    icon: CreditCard,
+    accent: "from-blue-600 to-indigo-700",
+  },
+  {
+    name: "Spaargroei plannen",
+    href: "/tools/sparen",
+    description: "Zie wat rente-op-rente voor je spaardoel doet.",
+    icon: PiggyBank,
+    accent: "from-blue-500 to-cyan-600",
+  },
+  {
+    name: "BTW uitrekenen",
+    href: "/tools/btw",
+    description: "Snel exclusief, inclusief en BTW-bedrag berekenen.",
+    icon: Receipt,
+    accent: "from-emerald-500 to-teal-600",
+  },
+];
+
 const toolsCollectionSchema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: "Alle Rekentools - QuotApp.nl",
-  description: "Bekijk alle 38 gratis online rekentools voor Nederland. Van BTW berekenen tot hypotheek calculaties, van sparen tot lenen.",
+  description: `Bekijk alle ${toolCount} gratis online rekentools voor Nederland. Van BTW berekenen tot hypotheek calculaties, van sparen tot lenen.`,
   url: "https://quotapp.nl/tools",
   isPartOf: {
     "@type": "WebSite",
@@ -146,8 +187,8 @@ const toolsCollectionSchema = {
 };
 
 export const metadata = {
-  title: "Alle Rekentools | 38+ Gratis Online Calculators",
-  description: "Bekijk alle 38+ gratis online rekentools voor Nederland. Hypotheek, lening, BTW, sparen, salaris en meer. Alle tools 100% gratis en direct te gebruiken.",
+  title: `Alle Rekentools | ${toolCount} Gratis Online Calculators`,
+  description: `Bekijk alle ${toolCount} gratis online rekentools voor Nederland. Hypotheek, lening, BTW, sparen, salaris en meer. Alle tools 100% gratis en direct te gebruiken.`,
   keywords: ["rekentools", "calculators", "online rekenmachine", "gratis rekenen", "btw", "hypotheek", "lening", "sparen", "salaris"],
   alternates: {
     canonical: "https://quotapp.nl/tools",
@@ -157,8 +198,8 @@ export const metadata = {
     locale: "nl_NL",
     url: "https://quotapp.nl/tools",
     siteName: "QuotApp.nl",
-    title: "Alle Rekentools | 38+ Gratis Online Calculators - QuotApp.nl",
-    description: "Bekijk alle 38+ gratis online rekentools voor Nederland. Hypotheek, lening, BTW, sparen en meer.",
+    title: `Alle Rekentools | ${toolCount} Gratis Online Calculators - QuotApp.nl`,
+    description: `Bekijk alle ${toolCount} gratis online rekentools voor Nederland. Hypotheek, lening, BTW, sparen en meer.`,
     images: [
       {
         url: "/og-image.jpg",
@@ -170,9 +211,9 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Alle Rekentools | 38+ Gratis Online Calculators",
-    description: "Bekijk alle 38+ gratis online rekentools voor Nederland.",
-    images: ["/og-image.jpg"],
+    title: `Alle Rekentools | ${toolCount} Gratis Online Calculators`,
+    description: `Bekijk alle ${toolCount} gratis online rekentools voor Nederland.`,
+    images: ["/og-image.svg"],
   },
 };
 
@@ -180,132 +221,170 @@ export default function ToolsPage() {
   return (
     <div className="min-h-screen">
       <JsonLd data={toolsCollectionSchema} />
-      
-      {/* Header */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background pt-16 pb-12">
+
+      <section className="relative overflow-hidden bg-gradient-to-b from-primary/5 via-background to-background pt-10 pb-12 md:pt-14 md:pb-16">
+        <div className="absolute inset-0 overflow-hidden soft-grid opacity-40" />
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-purple-500/5 rounded-full blur-3xl" />
+          <div className="absolute -top-1/2 -right-1/2 h-full w-full rounded-full bg-primary/5 blur-3xl" />
+          <div className="absolute -bottom-1/2 -left-1/2 h-full w-full rounded-full bg-purple-500/5 blur-3xl" />
         </div>
 
         <div className="container mx-auto px-4 relative">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
-              Alle Gratis Rekentools
+          <div className="section-shell mx-auto max-w-4xl p-6 text-center md:p-8">
+            <h1 className="mb-6 text-4xl font-bold gradient-text md:text-5xl">
+              Alle gratis rekentools overzichtelijk op één plek
             </h1>
-            <p className="text-xl text-muted-foreground mb-6">
-              48+ handige online calculators voor al je berekeningen. 
-              Van hypotheek tot BTW, van sparen tot lenen - alles 100% gratis!
+            <p className="mb-6 text-lg leading-relaxed text-muted-foreground md:text-xl">
+              {toolCount} handige online calculators voor al je berekeningen. Van hypotheek tot BTW, van sparen tot lenen — alles 100% gratis en direct te gebruiken.
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm">
-              <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary">
-                <Calculator className="w-4 h-4" />
-                <span>48 Tools</span>
+              <span className="cta-chip">
+                <Calculator className="h-4 w-4 text-primary" />
+                <span>{toolCount} tools</span>
               </span>
-              <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300">
-                <Coins className="w-4 h-4" />
-                <span>100% Gratis</span>
+              <span className="cta-chip">
+                <Coins className="h-4 w-4 text-primary" />
+                <span>100% gratis</span>
               </span>
-              <span className="flex items-center gap-2 px-4 py-2 rounded-full bg-secondary">
-                <ArrowRight className="w-4 h-4" />
-                <span>Direct Gebruiken</span>
+              <span className="cta-chip">
+                <ArrowRight className="h-4 w-4 text-primary" />
+                <span>Direct gebruiken</span>
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tools by Category */}
-      <div className="container mx-auto px-4 py-12">
-        {toolsByCategory.map((category) => (
-          <section key={category.category} className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <div className={`p-3 rounded-xl bg-gradient-to-br ${category.color} text-white shadow-lg`}>
-                <category.icon className="w-6 h-6" />
-              </div>
-              <h2 className="text-2xl font-bold">{category.category}</h2>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {category.tools.map((tool) => (
-                <Link
-                  key={tool.href}
-                  href={tool.href}
-                  className="group bg-card border border-border rounded-xl p-5 hover:shadow-lg hover:border-primary/50 transition-all duration-300"
-                >
-                  <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
-                    {tool.name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {tool.description}
-                  </p>
-                  <div className="mt-3 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Open tool</span>
-                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        ))}
+      <div className="container mx-auto px-4 py-4">
+        <div className="mx-auto max-w-[970px]">
+          <TopBannerAd slot={AD_SLOTS.homepageTop} />
+        </div>
       </div>
 
-      {/* SEO Content */}
-      <section className="container mx-auto px-4 py-12 max-w-4xl">
-        <h2 className="text-3xl font-bold text-center mb-8">
-          Waarom QuotApp.nl Rekentools Gebruiken?
-        </h2>
-        
+      <div className="container mx-auto px-4 py-12 space-y-12">
+        <section className="section-shell p-6 md:p-8">
+          <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">Snel starten</p>
+              <h2 className="text-2xl font-bold md:text-3xl">Populaire calculators voor geldvragen met koopintentie</h2>
+            </div>
+            <p className="max-w-xl text-sm text-muted-foreground md:text-right">
+              Begin bij de tools waar bezoekers het vaakst doorstromen naar een volgende berekening of vergelijking.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {quickStartTools.map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                className="group rounded-2xl border border-border bg-card p-5 text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg"
+              >
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <div className={`rounded-2xl bg-gradient-to-br p-3 text-white shadow-lg ${tool.accent}`}>
+                    <tool.icon className="h-6 w-6" aria-hidden="true" />
+                  </div>
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                    Veel gebruikt
+                  </span>
+                </div>
+                <h3 className="mb-2 text-lg font-bold group-hover:text-primary transition-colors">{tool.name}</h3>
+                <p className="text-sm text-muted-foreground">{tool.description}</p>
+                <div className="mt-4 flex items-center text-sm font-medium text-primary">
+                  <span>Open calculator</span>
+                  <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          {toolsByCategory.map((category) => (
+            <div key={category.category} className="mb-12 last:mb-0">
+              <div className="mb-6 flex items-center gap-3">
+                <div className={`rounded-xl bg-gradient-to-br p-3 text-white shadow-lg ${category.color}`}>
+                  <category.icon className="h-6 w-6" aria-hidden="true" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold">{category.category}</h2>
+                  <p className="text-sm text-muted-foreground">{category.tools.length} tools in deze categorie</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {category.tools.map((tool) => (
+                  <Link
+                    key={tool.href}
+                    href={tool.href}
+                    className="group rounded-xl border border-border bg-card p-5 text-card-foreground transition-all duration-300 hover:border-primary/50 hover:shadow-lg"
+                  >
+                    <h3 className="mb-2 text-lg font-bold transition-colors group-hover:text-primary">{tool.name}</h3>
+                    <p className="text-sm text-muted-foreground">{tool.description}</p>
+                    <div className="mt-3 flex items-center text-sm font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                      <span>Open tool</span>
+                      <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      </div>
+
+      <section className="container mx-auto max-w-4xl px-4 py-12">
+        <h2 className="mb-8 text-center text-3xl font-bold">Waarom QuotApp.nl rekentools gebruiken?</h2>
+
         <div className="prose prose-lg max-w-none">
-          <p className="text-lg text-muted-foreground mb-6">
-            QuotApp.nl biedt de meest complete verzameling gratis online rekentools voor de Nederlandse markt. 
-            Of je nu een ondernemer bent die <strong>BTW moet berekenen</strong>, een starter die zijn 
-            <strong> maximale hypotheek wil weten</strong>, of gewoon iemand die snel 
-            <strong> procenten wilt berekenen</strong> - wij hebben de juiste tool voor je.
+          <p className="mb-6 text-lg text-muted-foreground">
+            QuotApp.nl biedt een complete verzameling gratis online rekentools voor de Nederlandse markt.
+            Of je nu een ondernemer bent die <strong>BTW moet berekenen</strong>, een starter die zijn
+            <strong> maximale hypotheek wil weten</strong>, of gewoon iemand die snel
+            <strong> procenten wil berekenen</strong> — wij hebben de juiste tool voor je.
           </p>
 
-          <h3 className="text-xl font-semibold mb-4">Alle Categorieën Rekentools</h3>
-          
-          <h4 className="font-semibold mt-6">Hypotheek & Wonen</h4>
+          <h3 className="mb-4 text-xl font-semibold">Alle categorieën rekentools</h3>
+
+          <h4 className="mt-6 font-semibold">Hypotheek & Wonen</h4>
           <p>
-            Van hypotheekberekeningen tot het vergelijken van rentetarieven - onze hypotheektools helpen je 
-            bij elke stap van je woningreis. Bereken je maximale hypotheek, vergelijk annuïteiten- met 
+            Van hypotheekberekeningen tot het vergelijken van rentetarieven: onze hypotheektools helpen je
+            bij elke stap van je woonvraag. Bereken je maximale hypotheek, vergelijk annuïteiten- met
             lineaire hypotheken, en ontdek of oversluiten voordelig is.
           </p>
 
-          <h4 className="font-semibold mt-6">Leningen & Krediet</h4>
+          <h4 className="mt-6 font-semibold">Leningen & Krediet</h4>
           <p>
-            Wil je lenen voor een auto, verbouwing of andere aankoop? Onze leningcalculators helpen je 
+            Wil je lenen voor een auto, verbouwing of andere aankoop? Onze leningcalculators helpen je
             inzicht te krijgen in je maandlasten, totale kosten en het jaarlijks kostenpercentage (JKP).
           </p>
 
-          <h4 className="font-semibold mt-6">Sparen & Beleggen</h4>
+          <h4 className="mt-6 font-semibold">Sparen & Beleggen</h4>
           <p>
-            Bereken hoe snel je vermogen groeit met rente-op-rente, vergelijk spaarrentes, en plan je 
+            Bereken hoe snel je vermogen groeit met rente-op-rente, vergelijk spaarrentes, en plan je
             pensioen. Onze spaartools maken financiële planning eenvoudig.
           </p>
 
-          <h4 className="font-semibold mt-6">Belastingen & Boekhouding</h4>
+          <h4 className="mt-6 font-semibold">Belastingen & Boekhouding</h4>
           <p>
-            Voor ondernemers en ZZP&apos;ers: bereken BTW, ontdek aftrekposten, en bereken afschrijvingen. 
+            Voor ondernemers en ZZP&apos;ers: bereken BTW, ontdek aftrekposten, en bereken afschrijvingen.
             Al onze tools zijn afgestemd op de Nederlandse belastingregels.
           </p>
 
-          <h4 className="font-semibold mt-6">Salaris & Persoonlijk</h4>
+          <h4 className="mt-6 font-semibold">Salaris & Persoonlijk</h4>
           <p>
-            Van bruto naar netto berekeningen tot het uitrekenen van vakantiedagen - onze salaristools 
+            Van bruto-naar-netto berekeningen tot het uitrekenen van vakantiedagen: onze salaristools
             geven je inzicht in je inkomen en rechten.
           </p>
 
-          <h4 className="font-semibold mt-6">Algemene Tools</h4>
+          <h4 className="mt-6 font-semibold">Algemene Tools</h4>
           <p>
-            Van procenten en datums tot IBAN-checks en valuta-omrekeningen - deze alledaagse calculators 
+            Van procenten en datums tot IBAN-checks en valuta-omrekeningen: deze alledaagse calculators
             maken snel rekenwerk een fluitje van een cent.
           </p>
         </div>
       </section>
 
-      {/* Bottom Ad */}
       <div className="container mx-auto px-4 pb-12">
         <InlineAd slot={AD_SLOTS.homepageInline} />
       </div>
