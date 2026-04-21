@@ -5,7 +5,7 @@ import { RecentlyUsed, FavoriteTools, ToolStats } from "@/components/tool-activi
 import { BadgeDisplay } from "@/components/badge-display";
 import { ToolCombos } from "@/components/tool-combos";
 import { NewsletterSignup } from "@/components/newsletter-signup";
-import { InlineAd, TopBannerAd, StickyAd, AnchorAd, RectangleAd, AD_SLOTS } from "@/components/ad-components";
+import { StickyAd, AD_SLOTS } from "@/components/ad-components";
 import { FAQSection } from "@/components/faq-section";
 import { RelatedTools } from "@/components/related-tools";
 import { JsonLd } from "@/components/json-ld";
@@ -175,7 +175,7 @@ const FEATURED_TOOL_COUNT = tools.length;
 const homepageFAQ = [
   {
     question: "Zijn alle rekentools op QuotApp.nl gratis?",
-    answer: "Ja, alle rekentools op QuotApp.nl zijn 100% gratis te gebruiken. Je hoeft niet te registreren en er zijn geen verborgen kosten. We financieren het platform via advertenties.",
+    answer: "Ja, alle rekentools op QuotApp.nl zijn 100% gratis te gebruiken. Je hoeft niet te registreren en er zijn geen verborgen kosten. Waar advertenties worden getoond, proberen we die duidelijk te scheiden van de inhoud.",
   },
   {
     question: "Waarom zou ik QuotApp.nl gebruiken in plaats van andere calculators?",
@@ -194,8 +194,8 @@ const homepageFAQ = [
     answer: "Onze tools gebruiken gevestigde wiskundige formules en zijn getest op nauwkeurigheid. Voor financiële berekeningen zoals hypotheken geven we een indicatie - voor definitieve cijfers raden we altijd aan om contact op te nemen met een financieel adviseur.",
   },
   {
-    question: "Hoe verdien ik aan de gratis rekentools?",
-    answer: "Wij tonen relevante advertenties op QuotApp.nl om de kosten voor het gratis platform te dekken. Wij staan volledig achter transparantie: advertenties zijn altijd duidelijk gemarkeerd en storen niet overmatig. Wij kiezen zorgvuldig voor niet-opdringerige advertenties die passen bij de beleving van onze gebruikers.",
+    question: "Hoe wordt QuotApp.nl onderhouden?",
+    answer: "QuotApp.nl wordt onderhouden met een mix van productverbeteringen, gebruiksfeedback en in sommige gevallen advertenties of toekomstige samenwerkingen. De focus blijft dat de calculators eerst nuttig, duidelijk en betrouwbaar moeten zijn.",
   },
   {
     question: "Welke rekentools zijn het meest populair?",
@@ -379,15 +379,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TOP AD - Above fold, largest and most valuable */}
-      <div className="w-full bg-muted/30 py-4">
-        <div className="container mx-auto px-4">
-          <div className="max-w-[970px] mx-auto">
-            <TopBannerAd slot={AD_SLOTS.homepageTop} />
-          </div>
-        </div>
-      </div>
-
       {/* Social Proof Section - E-E-A-T Trust Signal */}
       <SocialProof />
 
@@ -399,9 +390,6 @@ export default function Home() {
             {/* Quote of the Day */}
             <QuoteOfTheDay />
 
-            {/* Ad after quote */}
-            <InlineAd slot={AD_SLOTS.homepageInline} />
-
             {/* Tool Activity */}
             <RecentlyUsed />
             <FavoriteTools />
@@ -409,11 +397,6 @@ export default function Home() {
 
             {/* Badges */}
             <BadgeDisplay />
-
-            {/* FIRST IN-CONTENT AD - High visibility */}
-            <div className="my-8">
-              <InlineAd slot={AD_SLOTS.homepageInline} />
-            </div>
 
             {/* Tools Grid */}
             <div className="mb-12 section-shell p-6 md:p-8" id="tools">
@@ -470,16 +453,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* SECOND IN-CONTENT AD - After tools */}
-            <InlineAd slot={AD_SLOTS.homepageInline} />
-
             {/* Tool Combos */}
             <ToolCombos />
-
-            {/* THIRD IN-CONTENT AD - After tool combos */}
-            <div className="my-8">
-              <RectangleAd slot={AD_SLOTS.homepageSidebar} />
-            </div>
 
             {/* Newsletter */}
             <div className="section-shell p-1">
@@ -640,9 +615,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* FOURTH IN-CONTENT AD - After SEO content */}
-            <InlineAd slot={AD_SLOTS.homepageInline} />
-
             {/* Related Tools Section */}
             <div className="max-w-4xl mx-auto">
               <RelatedTools limit={6} />
@@ -663,13 +635,22 @@ export default function Home() {
         </div>
       </div>
 
-      {/* FIFTH AD - Before footer */}
-      <section className="container mx-auto px-4 pb-8">
-        <InlineAd slot={AD_SLOTS.homepageInline} />
+      <section className="container mx-auto max-w-4xl px-4 pb-10">
+        <div className="section-shell p-6 md:p-8">
+          <h2 className="text-2xl font-bold">Transparantie en kwaliteit</h2>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            QuotApp.nl is gebouwd om snel antwoord te geven op veelvoorkomende Nederlandse rekenvragen. We blijven de site
+            uitbreiden met betere uitleg, voorbeelden en controleerbare aannames, zodat de calculators niet alleen snel zijn,
+            maar ook echt bruikbaar en betrouwbaar voelen.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3 text-sm">
+            <Link href="/over-ons" className="rounded-full border border-border px-4 py-2 hover:bg-secondary">Over ons</Link>
+            <Link href="/privacy" className="rounded-full border border-border px-4 py-2 hover:bg-secondary">Privacy</Link>
+            <Link href="/disclaimer" className="rounded-full border border-border px-4 py-2 hover:bg-secondary">Disclaimer</Link>
+            <Link href="/contact" className="rounded-full border border-border px-4 py-2 hover:bg-secondary">Contact</Link>
+          </div>
+        </div>
       </section>
-
-      {/* Mobile Anchor Ad - Always visible on mobile */}
-      <AnchorAd slot={AD_SLOTS.mobileAnchor} />
     </div>
   );
 }

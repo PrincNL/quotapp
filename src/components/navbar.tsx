@@ -3,28 +3,27 @@
 import Link from "next/link";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import { 
-  Calculator, 
-  Menu, 
-  X, 
-  Percent, 
-  Home, 
-  Hash, 
-  Type, 
-  Calendar, 
-  Scale, 
+import {
+  Calculator,
+  Menu,
+  X,
+  Percent,
+  Home,
+  Hash,
+  Type,
+  Calendar,
+  Scale,
   Banknote,
-  TrendingUp 
+  TrendingUp,
+  Sparkles,
+  Grid3X3,
+  ArrowRight,
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { TOTAL_TOOL_COUNT } from "@/lib/site-stats";
 
-// Dynamic import voor Framer Motion - vermindert initial JS bundle
 const MotionDiv = dynamic(
   () => import("framer-motion").then((mod) => mod.motion.div),
-  { ssr: false }
-);
-const MotionSpan = dynamic(
-  () => import("framer-motion").then((mod) => ({ default: (props: any) => <mod.motion.span {...props} /> })),
   { ssr: false }
 );
 
@@ -39,128 +38,193 @@ const tools = [
   { name: "BMI", href: "/tools/bmi", icon: Scale, description: "Body Mass Index" },
 ];
 
-// Lightweight mobile menu animation - CSS only voor betere performance
-const mobileMenuStyles = {
-  closed: {
-    opacity: 0,
-    maxHeight: 0,
-    overflow: "hidden" as const,
-    transition: {
-      duration: 0.2,
-      ease: [0.4, 0, 0.2, 1]
-    }
-  },
-  open: { 
-    opacity: 1,
-    maxHeight: 600,
-    overflow: "hidden" as const,
-    transition: {
-      duration: 0.3,
-      ease: [0.4, 0, 0.2, 1]
-    }
-  }
-};
-
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-primary text-primary-foreground shadow-lg" role="navigation" aria-label="Hoofdnavigatie">
+    <nav
+      className="sticky top-0 z-50 border-b border-border/60 bg-background/85 text-foreground shadow-sm backdrop-blur-xl"
+      role="navigation"
+      aria-label="Hoofdnavigatie"
+    >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link 
-            href="/" 
-            className="flex items-center gap-2 font-bold text-xl hover:opacity-90 transition-opacity"
+        <div className="flex min-h-18 items-center justify-between gap-3 py-3">
+          <Link
+            href="/"
+            className="flex min-w-0 items-center gap-3 rounded-xl px-1 py-1 font-bold text-xl transition-opacity hover:opacity-90"
             aria-label="QuotApp.nl - Terug naar home"
+            onClick={() => setIsOpen(false)}
           >
             <MotionDiv
-              whileHover={{ rotate: 10 }}
+              whileHover={{ rotate: 10, scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
-              className="flex items-center justify-center"
+              className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary to-purple-500 text-white shadow-lg"
             >
-              <Calculator className="w-6 h-6" aria-hidden="true" />
+              <Calculator className="w-5 h-5" aria-hidden="true" />
             </MotionDiv>
-            <span>QuotApp.nl</span>
+            <div className="min-w-0">
+              <span className="block truncate text-base sm:text-lg">QuotApp.nl</span>
+              <span className="hidden text-xs font-medium text-muted-foreground sm:block">
+                {TOTAL_TOOL_COUNT} gratis tools voor Nederland
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden xl:flex items-center gap-1 rounded-2xl border border-border/60 bg-card/80 p-1 text-card-foreground shadow-sm">
             <Link
               href="/"
-              className="flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-primary-foreground/10 transition-colors"
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
             >
               <Home className="w-4 h-4" aria-hidden="true" />
-              <span className="text-sm">Home</span>
+              <span>Home</span>
             </Link>
-            
-            {tools.map((tool) => (
+            <Link
+              href="/tools"
+              className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
+            >
+              <Grid3X3 className="w-4 h-4" aria-hidden="true" />
+              <span>Alle tools</span>
+            </Link>
+            {tools.slice(0, 4).map((tool) => (
               <Link
                 key={tool.name}
                 href={tool.href}
-                className="px-3 py-2 rounded-lg hover:bg-primary-foreground/10 transition-colors text-sm"
+                className="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               >
                 {tool.name}
               </Link>
             ))}
+            <Link
+              href="/over-ons"
+              className="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              Over ons
+            </Link>
+            <Link
+              href="/contact"
+              className="rounded-xl px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+            >
+              Contact
+            </Link>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden lg:block">
+            <div className="hidden md:block">
               <ThemeToggle />
             </div>
-            
-            {/* Mobile Menu Button - CSS animation voor betere FID */}
+            <Link
+              href="/tools"
+              className="hidden lg:inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
+            >
+              <Sparkles className="w-4 h-4" aria-hidden="true" />
+              Start berekenen
+            </Link>
+
             <button
-              className="lg:hidden p-2 rounded-lg hover:bg-primary-foreground/10 transition-colors"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card transition-colors hover:bg-secondary lg:hidden"
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Menu sluiten" : "Menu openen"}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
             >
-              <span className={`inline-block w-6 h-6 transition-transform duration-200 ${isOpen ? 'rotate-90' : ''}`}>
-                {isOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
-              </span>
+              {isOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu - CSS transitions voor betere performance */}
-        <div 
+        <div
           id="mobile-menu"
-          className={`lg:hidden border-t border-primary-foreground/10 transition-all duration-300 ease-in-out ${
-            isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? "max-h-[720px] opacity-100 pb-4" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="py-4 space-y-1">
-            <div>
-              <Link 
-                href="/" 
-                className="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-primary-foreground/10 transition-colors"
+          <div className="rounded-2xl border border-border/60 bg-card/95 p-3 text-card-foreground shadow-lg">
+            <div className="grid gap-2 sm:grid-cols-2">
+              <Link
+                href="/"
+                className="flex items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-secondary"
                 onClick={() => setIsOpen(false)}
               >
-                <Home className="w-5 h-5" aria-hidden="true" />
-                <span>Home</span>
+                <Home className="w-5 h-5 text-primary" aria-hidden="true" />
+                <span className="font-medium">Home</span>
+              </Link>
+              <Link
+                href="/tools"
+                className="flex items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-secondary"
+                onClick={() => setIsOpen(false)}
+              >
+                <Grid3X3 className="w-5 h-5 text-primary" aria-hidden="true" />
+                <div>
+                  <span className="font-medium">Alle tools</span>
+                  <p className="text-xs text-muted-foreground">Bekijk het volledige overzicht</p>
+                </div>
               </Link>
             </div>
-            
-            {tools.map((tool) => (
-              <div key={tool.name}>
+
+            <div className="mt-3 grid gap-2 border-t border-border/60 pt-3">
+              <Link
+                href="/over-ons"
+                className="flex items-start gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-secondary"
+                onClick={() => setIsOpen(false)}
+              >
+                <div className="mt-0.5 rounded-lg bg-primary/10 p-2 text-primary">
+                  <Sparkles className="w-4 h-4" aria-hidden="true" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium">Over ons</span>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">Wie we zijn en hoe QuotApp werkt</p>
+                </div>
+              </Link>
+              <Link
+                href="/contact"
+                className="flex items-start gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-secondary"
+                onClick={() => setIsOpen(false)}
+              >
+                <div className="mt-0.5 rounded-lg bg-primary/10 p-2 text-primary">
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium">Contact</span>
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                  </div>
+                  <p className="text-xs text-muted-foreground">Feedback, vragen en verbetersuggesties</p>
+                </div>
+              </Link>
+              {tools.map((tool) => (
                 <Link
+                  key={tool.name}
                   href={tool.href}
-                  className="flex items-center gap-2 px-4 py-3 rounded-lg hover:bg-primary-foreground/10 transition-colors"
+                  className="flex items-start gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-secondary"
                   onClick={() => setIsOpen(false)}
                 >
-                  <tool.icon className="w-5 h-5" aria-hidden="true" />
-                  <div>
-                    <span className="font-medium">{tool.name}</span>
-                    <p className="text-xs text-primary-foreground/70">{tool.description}</p>
+                  <div className="mt-0.5 rounded-lg bg-primary/10 p-2 text-primary">
+                    <tool.icon className="w-4 h-4" aria-hidden="true" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="font-medium">{tool.name}</span>
+                      <ArrowRight className="w-4 h-4 text-muted-foreground" aria-hidden="true" />
+                    </div>
+                    <p className="text-xs text-muted-foreground">{tool.description}</p>
                   </div>
                 </Link>
-              </div>
-            ))}
-            
-            <div className="px-4 pt-4 border-t border-primary-foreground/10 mt-4">
+              ))}
+            </div>
+
+            <div className="mt-3 flex items-center justify-between gap-3 border-t border-border/60 pt-3">
               <ThemeToggle />
+              <Link
+                href="/tools"
+                className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-md"
+                onClick={() => setIsOpen(false)}
+              >
+                <Sparkles className="w-4 h-4" aria-hidden="true" />
+                Start berekenen
+              </Link>
             </div>
           </div>
         </div>
